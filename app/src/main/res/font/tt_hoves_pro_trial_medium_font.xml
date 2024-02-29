@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<font-family
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
     <font
         android:font="@font/tt_hoves_pro_trial_medium"
         android:fontStyle="normal"
         android:fontWeight="500"
-        app:font = "@font/tt_hoves_pro_trial_medium"
-        app:fontStyle = "normal"
-        app:fontWeight = "500"
-        tools:ignore = "UnusedAttribute"
-        />
+        app:font="@font/tt_hoves_pro_trial_medium"
+        app:fontStyle="normal"
+        app:fontWeight="500"
+        tools:ignore="UnusedAttribute" />
 </font-family>
