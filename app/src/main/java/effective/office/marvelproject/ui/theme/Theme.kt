@@ -18,15 +18,27 @@ private val darkColors = CustomColors(
     descriptionColor = TextColors.description
 )
 
+val LocalCustomTypography = staticCompositionLocalOf {
+    CustomTypography(
+        medium = AppTheme.TextStyle.Medium,
+        bold = AppTheme.TextStyle.Bold
+    )
+}
+
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val colors = darkColors
+    val typography = CustomTypography(
+        medium = AppTheme.TextStyle.Medium,
+        bold = AppTheme.TextStyle.Bold
+    )
 
     CompositionLocalProvider(
         LocalCustomColors provides colors,
+        LocalCustomTypography provides typography,
         content = content
     )
 }
