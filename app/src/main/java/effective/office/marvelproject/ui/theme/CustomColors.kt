@@ -4,7 +4,8 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
 @Immutable
-data class CustomColors (
+data class CustomColors(
     val mainColor: Color,
-    val descriptionColor: Color
+    val descriptionColor: Color,
+    val backgroundColor: Color
 )

@@ -22,6 +22,7 @@ object AppTheme {
     object TextColors {
         val main = Color(0xFFFFFFFF)
         val description = Color(0xFFEEF2FB)
+        val background = Color(0xFF2b272b)
     }
 
     object TextStyle {

@@ -9,13 +9,15 @@ import effective.office.marvelproject.ui.theme.AppTheme.TextColors
 val LocalCustomColors = staticCompositionLocalOf {
     CustomColors(
         mainColor = TextColors.main,
-        descriptionColor = TextColors.description
+        descriptionColor = TextColors.description,
+        backgroundColor = TextColors.background
     )
 }
 
 private val darkColors = CustomColors(
     mainColor = TextColors.main,
-    descriptionColor = TextColors.description
+    descriptionColor = TextColors.description,
+    backgroundColor = TextColors.background
 )
 
 val LocalCustomTypography = staticCompositionLocalOf {
