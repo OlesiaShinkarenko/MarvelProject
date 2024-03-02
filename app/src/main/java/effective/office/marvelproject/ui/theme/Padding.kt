@@ -8,4 +8,7 @@ object Padding {
         horizontal = 16.dp,
         vertical = 24.dp
     )
+    val top_24 = PaddingValues(
+        top = 24.dp
+    )
 }

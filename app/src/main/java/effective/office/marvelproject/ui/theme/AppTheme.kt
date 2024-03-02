@@ -29,7 +29,8 @@ object AppTheme {
         val Medium = TextStyle(
             fontFamily = FontFamily,
             fontWeight = FontWeight.Medium,
-            fontSize = 36.sp,
+            fontSize = 24.sp,
+            lineHeight = 30.sp,
             platformStyle = PlatformTextStyle(includeFontPadding = false),
             lineHeightStyle = LineHeightStyle(
                 LineHeightStyle.Alignment.Proportional,
@@ -39,8 +40,7 @@ object AppTheme {
         val Bold = TextStyle(
             fontFamily = FontFamily,
             fontWeight = FontWeight.Bold,
-            fontSize = 24.sp,
-            lineHeight = 30.sp,
+            fontSize = 32.sp,
             platformStyle = PlatformTextStyle(includeFontPadding = false),
             lineHeightStyle = LineHeightStyle(
                 LineHeightStyle.Alignment.Proportional,
