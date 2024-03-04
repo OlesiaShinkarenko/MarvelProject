@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +27,11 @@ import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
-fun HeroScreen(modifier: Modifier = Modifier, item: HeroUI) {
+fun HeroScreen(
+    modifier: Modifier = Modifier,
+    item: HeroUI,
+    onBackClicked: () -> Unit
+) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(item.logo)
@@ -36,6 +44,15 @@ fun HeroScreen(modifier: Modifier = Modifier, item: HeroUI) {
             contentDescription = item.name,
             contentScale = ContentScale.FillBounds
         )
+        IconButton(
+            onClick = onBackClicked,
+            ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = stringResource(id = R.string.back),
+                tint = AppTheme.colors.mainColor,
+            )
+        }
         Column(
             modifier = Modifier
                 .align(Alignment.BottomStart)
@@ -69,7 +86,8 @@ fun HeroScreenPreview() {
                 name = stringResource(id = R.string.hero1),
                 description = stringResource(id = R.string.description1)
             ),
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            onBackClicked = {}
         )
     }
 }

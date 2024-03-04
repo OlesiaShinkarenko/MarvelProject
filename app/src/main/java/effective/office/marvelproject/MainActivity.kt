@@ -53,9 +53,10 @@ fun Screen(
             description = stringResource(id = R.string.description3)
         )
     )
-
     AppTheme {
-        NavHost(navController = navController, startDestination = MarvelScreen.Start.name) {
+        NavHost(
+            navController = navController, startDestination = MarvelScreen.Start.name
+        ) {
             composable(route = MarvelScreen.Start.name) {
                 ChooseHeroScreen(
                     modifier = Modifier
@@ -84,10 +85,10 @@ fun Screen(
             ) { index ->
                 HeroScreen(
                     item = listHero[index.arguments?.getInt("index")!!],
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    onBackClicked = { navController.navigateUp() }
                 )
             }
         }
-
     }
 }
