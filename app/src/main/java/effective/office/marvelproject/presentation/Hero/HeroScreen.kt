@@ -31,7 +31,11 @@ fun HeroScreen(modifier: Modifier = Modifier, item: HeroUI) {
             .build()
     )
     Box(modifier = modifier) {
-        Image(painter = painter, contentDescription = item.name, contentScale = ContentScale.Fit)
+        Image(
+            painter = painter,
+            contentDescription = item.name,
+            contentScale = ContentScale.FillBounds
+        )
         Column(
             modifier = Modifier
                 .align(Alignment.BottomStart)

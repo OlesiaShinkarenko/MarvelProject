@@ -1,6 +1,7 @@
 package effective.office.marvelproject.presentation.chooseHero
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -16,7 +17,11 @@ import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
-fun HeroElement(modifier: Modifier = Modifier, item: HeroUI) {
+fun HeroElement(
+    modifier: Modifier = Modifier,
+    item: HeroUI,
+    onCardHeroClicked: () -> Unit
+) {
 
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
@@ -24,7 +29,8 @@ fun HeroElement(modifier: Modifier = Modifier, item: HeroUI) {
             .size(coil.size.Size.ORIGINAL)
             .build()
     )
-    Box(modifier = modifier) {
+    Box(modifier = modifier.clickable { onCardHeroClicked() }
+    ) {
         Image(
             painter = painter,
             contentDescription = item.name,

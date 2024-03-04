@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -27,7 +27,11 @@ import effective.office.marvelproject.ui.theme.Size
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ChooseHeroListUI(modifier: Modifier = Modifier, listHero: List<HeroUI>) {
+fun ChooseHeroListUI(
+    modifier: Modifier = Modifier,
+    listHero: List<HeroUI>,
+    onCardHeroClicked: (Int) -> Unit
+) {
     val state = rememberLazyListState()
     val snappingLayout = remember(state) {
         SnapLayoutInfoProvider(
@@ -43,13 +47,14 @@ fun ChooseHeroListUI(modifier: Modifier = Modifier, listHero: List<HeroUI>) {
         horizontalArrangement = Arrangement.spacedBy(Size.size20),
         flingBehavior = flingBehavior,
     ) {
-        items(listHero) { item ->
+        itemsIndexed(listHero) { index, item ->
             HeroElement(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(shape = Shape.shape10)
                     .shadow(elevation = Size.size4, shape = Shape.shape10),
-                item = item
+                item = item,
+                onCardHeroClicked = { onCardHeroClicked(index) }
             )
         }
     }
@@ -82,7 +87,8 @@ fun ChooseHeroListUIPreview() {
             listHero = listHero,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Padding.top_24)
+                .padding(Padding.top_24),
+            onCardHeroClicked = {}
         )
     }
 }
