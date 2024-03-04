@@ -18,4 +18,7 @@ object Padding {
         start = 28.dp,
         bottom = 60.dp
     )
+    val end_28 = PaddingValues(
+        end = 28.dp
+    )
 }
