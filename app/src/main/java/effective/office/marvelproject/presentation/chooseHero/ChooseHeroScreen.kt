@@ -24,7 +24,8 @@ fun ChooseHeroScreen(
             listHero = listHero,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Padding.top_24),
+                .padding(Padding.top_40)
+                .padding(Padding.bottom_32),
             onCardHeroClicked = onCardHeroClicked
         )
     }

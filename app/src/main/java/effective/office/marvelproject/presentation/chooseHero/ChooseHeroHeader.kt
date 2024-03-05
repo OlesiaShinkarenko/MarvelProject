@@ -31,7 +31,7 @@ fun ChooseHeroHeader(modifier: Modifier = Modifier) {
             text = stringResource(id = R.string.choose),
             style = AppTheme.typography.bold,
             color = AppTheme.colors.mainColor,
-            modifier = Modifier.padding(Padding.top_24)
+            modifier = Modifier.padding(Padding.top_40)
         )
     }
 }

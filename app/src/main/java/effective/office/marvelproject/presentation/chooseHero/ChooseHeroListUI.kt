@@ -5,6 +5,7 @@ import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.SnapPositionInLayout
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -39,7 +40,9 @@ fun ChooseHeroListUI(
             positionInLayout = SnapPositionInLayout.CenterToCenter
         )
     }
+
     val flingBehavior = rememberSnapFlingBehavior(snappingLayout)
+
     LazyRow(
         contentPadding = Padding.horizontal_30,
         modifier = modifier,
@@ -50,9 +53,9 @@ fun ChooseHeroListUI(
         itemsIndexed(listHero) { index, item ->
             HeroElement(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(shape = Shape.shape10)
-                    .shadow(elevation = Size.size4, shape = Shape.shape10),
+                    .fillMaxSize()
+                    .shadow(elevation = Size.size16, shape = Shape.shape10)
+                    .clip(shape = Shape.shape10),
                 item = item,
                 onCardHeroClicked = { onCardHeroClicked(index) }
             )
@@ -87,7 +90,7 @@ fun ChooseHeroListUIPreview() {
             listHero = listHero,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Padding.top_24),
+                .padding(Padding.top_40),
             onCardHeroClicked = {}
         )
     }

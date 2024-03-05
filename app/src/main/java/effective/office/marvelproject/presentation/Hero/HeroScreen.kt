@@ -42,6 +42,7 @@ fun HeroScreen(
         Image(
             painter = painter,
             contentDescription = item.name,
+            modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
         IconButton(
@@ -65,7 +66,7 @@ fun HeroScreen(
                 color = AppTheme.colors.mainColor
             )
             Text(
-                modifier = Modifier.padding(Padding.top_24),
+                modifier = Modifier.padding(Padding.top_40),
                 text = item.description,
                 style = AppTheme.typography.medium,
                 color = AppTheme.colors.descriptionColor

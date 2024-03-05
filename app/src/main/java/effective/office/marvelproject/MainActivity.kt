@@ -76,12 +76,13 @@ fun Screen(
                     listHero = listHero
                 )
             }
-            composable(route = MarvelScreen.Description.name + "{index}", arguments =
-            listOf(
-                navArgument(name = "index") {
-                    type = NavType.IntType
-                }
-            )
+            composable(
+                route = MarvelScreen.Description.name + "{index}",
+                arguments = listOf(
+                    navArgument(name = "index") {
+                        type = NavType.IntType
+                    }
+                )
             ) { index ->
                 HeroScreen(
                     item = listHero[index.arguments?.getInt("index")!!],
