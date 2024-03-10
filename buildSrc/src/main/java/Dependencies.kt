@@ -8,6 +8,7 @@ object Dependencies{
         const val compose_ui = "1.6.2"
         const val coil = "2.6.0"
         const val material3 = "1.2.0"
+        const val view_model = "2.6.1"
     }
 
     object AndroidX{
@@ -21,6 +22,7 @@ object Dependencies{
         const val compose_ui_tooling = "androidx.compose.ui:ui-tooling-preview:${Version.compose_ui}"
         const val material3 = "androidx.compose.material3:material3:${Version.material3}"
         const val navigation = "androidx.navigation:navigation-compose:${Version.navigation}"
+        const val view_model = "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.view_model}"
     }
 
     object Coil{

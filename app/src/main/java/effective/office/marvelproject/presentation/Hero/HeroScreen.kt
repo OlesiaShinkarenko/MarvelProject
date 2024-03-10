@@ -22,14 +22,14 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
-import effective.office.marvelproject.presentation.model.HeroUI
+import effective.office.marvelproject.presentation.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
 fun HeroScreen(
     modifier: Modifier = Modifier,
-    item: HeroUI,
+    item: Hero,
     onBackClicked: () -> Unit
 ) {
     val painter = rememberAsyncImagePainter(
@@ -41,13 +41,13 @@ fun HeroScreen(
     Box(modifier = modifier) {
         Image(
             painter = painter,
-            contentDescription = item.name,
+            contentDescription = stringResource(id = item.name),
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
         IconButton(
             onClick = onBackClicked,
-            ) {
+        ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(id = R.string.back),
@@ -61,13 +61,13 @@ fun HeroScreen(
                 .padding(Padding.end_28)
         ) {
             Text(
-                text = item.name,
+                text = stringResource(id = item.name),
                 style = AppTheme.typography.bold,
                 color = AppTheme.colors.mainColor
             )
             Text(
                 modifier = Modifier.padding(Padding.top_40),
-                text = item.description,
+                text = stringResource(id = item.description),
                 style = AppTheme.typography.medium,
                 color = AppTheme.colors.descriptionColor
             )
@@ -82,10 +82,10 @@ fun HeroScreenPreview() {
         color = AppTheme.colors.backgroundColor
     ) {
         HeroScreen(
-            item = HeroUI(
+            item = Hero(
                 logo = "https://iili.io/JMnAfIV.png",
-                name = stringResource(id = R.string.hero1),
-                description = stringResource(id = R.string.description1)
+                name = R.string.hero1,
+                description = R.string.description1
             ),
             modifier = Modifier.fillMaxSize(),
             onBackClicked = {}

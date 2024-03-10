@@ -62,4 +62,5 @@ dependencies {
     implementation(Dependencies.AndroidX.navigation)
     implementation(Dependencies.Coil.coil)
     implementation(Dependencies.AndroidX.compose_tool)
+    implementation(Dependencies.AndroidX.view_model)
 }

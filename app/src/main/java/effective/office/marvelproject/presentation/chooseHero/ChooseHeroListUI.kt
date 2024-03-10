@@ -17,10 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import effective.office.marvelproject.R
-import effective.office.marvelproject.presentation.model.HeroUI
+import effective.office.marvelproject.presentation.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Shape
@@ -30,7 +29,7 @@ import effective.office.marvelproject.ui.theme.Size
 @Composable
 fun ChooseHeroListUI(
     modifier: Modifier = Modifier,
-    listHero: List<HeroUI>,
+    listHero: List<Hero>,
     onCardHeroClicked: (Int) -> Unit
 ) {
     val state = rememberLazyListState()
@@ -67,20 +66,20 @@ fun ChooseHeroListUI(
 @Composable
 fun ChooseHeroListUIPreview() {
     val listHero = listOf(
-        HeroUI(
+        Hero(
             logo = "https://iili.io/JMnAfIV.png",
-            name = stringResource(id = R.string.hero1),
-            description = stringResource(id = R.string.description1)
+            name = R.string.hero1,
+            description = R.string.description1
         ),
-        HeroUI(
+        Hero(
             logo = "https://iili.io/JMnuDI2.png",
-            name = stringResource(id = R.string.hero2),
-            description = stringResource(id = R.string.description2),
+            name = R.string.hero2,
+            description = R.string.description2,
         ),
-        HeroUI(
+        Hero(
             logo = "https://iili.io/JMnuyB9.png",
-            name = stringResource(id = R.string.hero3),
-            description = stringResource(id = R.string.description3)
+            name = R.string.hero3,
+            description = R.string.description3
         )
     )
     Surface(
