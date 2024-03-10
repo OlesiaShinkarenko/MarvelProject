@@ -40,7 +40,7 @@ fun HeroElement(
                 Size.size330
             ),
             contentDescription = stringResource(id = item.name),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
         )
         Text(
             modifier = Modifier
