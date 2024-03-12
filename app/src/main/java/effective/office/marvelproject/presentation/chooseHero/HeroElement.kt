@@ -14,7 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import effective.office.marvelproject.presentation.model.Hero
+import effective.office.marvelproject.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Size

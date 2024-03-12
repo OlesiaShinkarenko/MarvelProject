@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import effective.office.marvelproject.presentation.Hero.HeroScreen
-import effective.office.marvelproject.presentation.model.Hero
+import effective.office.marvelproject.model.Hero
 
 fun NavGraphBuilder.descriptionComposable(
     listHeroes: List<Hero>,

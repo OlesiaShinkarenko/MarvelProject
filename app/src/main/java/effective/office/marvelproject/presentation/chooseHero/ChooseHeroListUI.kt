@@ -19,7 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import effective.office.marvelproject.R
-import effective.office.marvelproject.presentation.model.Hero
+import effective.office.marvelproject.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Shape

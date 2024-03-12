@@ -22,7 +22,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
-import effective.office.marvelproject.presentation.model.Hero
+import effective.office.marvelproject.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 

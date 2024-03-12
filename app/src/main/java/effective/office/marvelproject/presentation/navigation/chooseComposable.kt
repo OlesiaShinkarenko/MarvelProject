@@ -10,7 +10,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import effective.office.marvelproject.R
 import effective.office.marvelproject.presentation.chooseHero.ChooseHeroScreen
-import effective.office.marvelproject.presentation.model.Hero
+import effective.office.marvelproject.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
 
 

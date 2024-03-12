@@ -1,4 +1,4 @@
-package effective.office.marvelproject.presentation.model
+package effective.office.marvelproject.model
 
 data class Hero(
     val logo: String,

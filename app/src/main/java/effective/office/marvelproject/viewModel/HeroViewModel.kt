@@ -3,7 +3,7 @@ package effective.office.marvelproject.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import effective.office.marvelproject.R
-import effective.office.marvelproject.presentation.model.Hero
+import effective.office.marvelproject.model.Hero
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
