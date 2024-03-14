@@ -10,12 +10,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import effective.office.marvelproject.R
 import effective.office.marvelproject.presentation.chooseHero.ChooseHeroScreen
-import effective.office.marvelproject.model.Hero
 import effective.office.marvelproject.ui.theme.AppTheme
+import effective.office.marvelproject.viewModel.HeroesUiState
 
 
 fun NavGraphBuilder.chooseComposable(
-    listHero: List<Hero>,
     onCardClicked: (Int) -> Unit
 ) {
     composable(route = MarvelScreen.Start.name) {
@@ -29,8 +28,7 @@ fun NavGraphBuilder.chooseComposable(
                     painter = painterResource(id = R.drawable.background),
                     contentScale = ContentScale.Crop
                 ),
-            onCardHeroClicked = onCardClicked,
-            listHero = listHero
+            onCardHeroClicked = onCardClicked
         )
     }
 }
