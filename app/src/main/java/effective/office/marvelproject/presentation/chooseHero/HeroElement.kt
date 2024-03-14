@@ -5,31 +5,24 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
-import coil.imageLoader
 import coil.request.ImageRequest
 import coil.size.Scale
-import coil.util.DebugLogger
-import effective.office.marvelproject.model.Hero
+import effective.office.marvelproject.network.model.Character
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
-import effective.office.marvelproject.ui.theme.Size
-import effective.office.marvelproject.network.model.Character
 
 @Composable
 fun HeroElement(
     modifier: Modifier = Modifier,
     item: Character,
-    onCardHeroClicked: () -> Unit
+    onCardHeroClicked: (Int) -> Unit
 ) {
 
     val address = item.thumbnail.path.replace("http", "https") + "." + item.thumbnail.extension
@@ -44,7 +37,9 @@ fun HeroElement(
             .build()
     )
 
-    Box(modifier = modifier.clickable { onCardHeroClicked() }
+    Box(modifier = modifier.clickable {
+        onCardHeroClicked(item.id)
+    }
     ) {
 
         Image(

@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 
 @Composable
 fun NavGraph(navController: NavHostController) {
-
     NavHost(
         navController = navController,
         startDestination = MarvelScreen.Start.name
@@ -16,11 +15,8 @@ fun NavGraph(navController: NavHostController) {
                 MarvelScreen.Description.name + index
             )
         }
-        /*
         descriptionComposable(
-            listHeroes = heroUiState.listHeroes,
             onBackClicked = { navController.navigateUp() }
         )
-         */
     }
 }

@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -32,7 +33,8 @@ private val authInterceptor = Interceptor { chain ->
 }
 
 private val client = OkHttpClient().newBuilder()
-    .addInterceptor(authInterceptor).build()
+    .addInterceptor(authInterceptor)
+    .build()
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -62,6 +64,14 @@ interface MarvelApiService {
         @Query("ts") ts: String = Constant.ts,
         @Query("hash") hash:String = Constant.hash(),
     ): MoshiHeroesResponse
+
+    @GET("characters/{characterId}")
+    suspend fun getHero(
+        @Path("characterId") id:Int,
+        @Query("ts") ts: String = Constant.ts,
+        @Query("hash") hash:String = Constant.hash()
+    ): MoshiHeroesResponse
+
 }
 
 object MarvelApi {

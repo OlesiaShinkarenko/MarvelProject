@@ -5,24 +5,17 @@ import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.SnapPositionInLayout
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import effective.office.marvelproject.network.model.Character
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import effective.office.marvelproject.R
-import effective.office.marvelproject.model.Hero
-import effective.office.marvelproject.ui.theme.AppTheme
+import effective.office.marvelproject.network.model.Character
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Shape
 import effective.office.marvelproject.ui.theme.Size
@@ -51,14 +44,14 @@ fun ChooseHeroListUI(
         horizontalArrangement = Arrangement.spacedBy(Size.size20),
         flingBehavior = flingBehavior,
     ) {
-        itemsIndexed(listHero) { index, item ->
+        items(listHero) {  item ->
             HeroElement(
                 modifier = Modifier
                     .width(Size.size330)
                     .shadow(elevation = Size.size16, shape = Shape.shape10)
                     .clip(shape = Shape.shape10),
                 item = item,
-                onCardHeroClicked = { onCardHeroClicked(index) }
+                onCardHeroClicked = onCardHeroClicked
             )
         }
     }
