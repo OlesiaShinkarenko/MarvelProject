@@ -11,7 +11,6 @@ import androidx.navigation.compose.composable
 import effective.office.marvelproject.R
 import effective.office.marvelproject.presentation.chooseHero.ChooseHeroScreen
 import effective.office.marvelproject.ui.theme.AppTheme
-import effective.office.marvelproject.viewModel.HeroesUiState
 
 
 fun NavGraphBuilder.chooseComposable(

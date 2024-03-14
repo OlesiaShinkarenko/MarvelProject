@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesUiState
+import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
 import effective.office.marvelproject.ui.theme.Padding
-import effective.office.marvelproject.viewModel.HeroesUiState
-import effective.office.marvelproject.viewModel.HeroesViewModel
 
 @Composable
 fun ChooseHeroScreen(
