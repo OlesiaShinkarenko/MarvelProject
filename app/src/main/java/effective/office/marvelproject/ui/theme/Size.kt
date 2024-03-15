@@ -7,4 +7,5 @@ object Size {
     val size20 = 20.dp
     val size16 = 16.dp
     val size330 = 330.dp
+    val size80 = 80.dp
 }

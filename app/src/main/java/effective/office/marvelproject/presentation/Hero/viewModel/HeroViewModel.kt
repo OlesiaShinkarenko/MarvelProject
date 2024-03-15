@@ -16,7 +16,6 @@ class HeroViewModel : ViewModel() {
 
     fun fetchHero(id: Int) {
         viewModelScope.launch {
-            _uiState.value = HeroUiState.Loading
             _uiState.value = try {
                 val response = MarvelApi.retrofitService.getHero(
                     id = id

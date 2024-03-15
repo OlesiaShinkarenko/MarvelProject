@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesUiState
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
+import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
@@ -37,7 +38,9 @@ fun ChooseHeroScreen(
             )
 
             is HeroesUiState.Error -> {}
-            is HeroesUiState.Loading -> {}
+            is HeroesUiState.Loading -> {
+                LoadingIndicator()
+            }
         }
 
     }

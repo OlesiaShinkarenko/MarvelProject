@@ -22,8 +22,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
+import effective.office.marvelproject.model.HeroUI
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroUiState
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
+import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
@@ -36,54 +38,63 @@ fun HeroScreen(
 ) {
     heroViewModel.fetchHero(id = id)
 
-    val heroUiState = heroViewModel.uiState.collectAsState().value
-    Box(modifier = modifier) {
-        when (heroUiState) {
-            is HeroUiState.Success -> {
-                val hero = heroUiState.hero
-
-                val painter = rememberAsyncImagePainter(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(hero.logo)
-                        .size(Size.ORIGINAL)
-                        .build()
-                )
-                Image(
-                    painter = painter,
-                    contentDescription = hero.name,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.FillBounds
-                )
-                Column(
-                    modifier = Modifier
-                        .align(Alignment.BottomStart)
-                        .padding(Padding.start_28_bottom_60)
-                        .padding(Padding.end_28)
-                ) {
-                    Text(
-                        text = hero.name,
-                        style = AppTheme.typography.bold,
-                        color = AppTheme.colors.mainColor
-                    )
-                    Text(
-                        modifier = Modifier.padding(Padding.top_40),
-                        text = hero.description,
-                        style = AppTheme.typography.medium,
-                        color = AppTheme.colors.descriptionColor
-                    )
-                }
-            }
-
-            is HeroUiState.Loading -> {}
-            is HeroUiState.Error -> {}
+    when (val heroUiState = heroViewModel.uiState.collectAsState().value) {
+        is HeroUiState.Success -> {
+            HeroContentScreen(
+                modifier = modifier,
+                heroUiState.hero,
+            )
         }
-        IconButton(
-            onClick = onBackClicked,
+
+        is HeroUiState.Loading -> {
+            LoadingIndicator()
+        }
+
+        is HeroUiState.Error -> {}
+    }
+
+    IconButton(
+        onClick = onBackClicked,
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+            contentDescription = stringResource(id = R.string.back),
+            tint = AppTheme.colors.mainColor,
+        )
+    }
+}
+
+@Composable
+fun HeroContentScreen(modifier: Modifier, hero: HeroUI) {
+    Box(modifier = modifier) {
+        val painter = rememberAsyncImagePainter(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(hero.logo)
+                .size(Size.ORIGINAL)
+                .build()
+        )
+        Image(
+            painter = painter,
+            contentDescription = hero.name,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+        Column(
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(Padding.start_28_bottom_60)
+                .padding(Padding.end_28)
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = stringResource(id = R.string.back),
-                tint = AppTheme.colors.mainColor,
+            Text(
+                text = hero.name,
+                style = AppTheme.typography.bold,
+                color = AppTheme.colors.mainColor
+            )
+            Text(
+                modifier = Modifier.padding(Padding.top_40),
+                text = hero.description,
+                style = AppTheme.typography.medium,
+                color = AppTheme.colors.descriptionColor
             )
         }
     }
