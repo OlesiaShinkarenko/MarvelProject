@@ -14,21 +14,20 @@ import androidx.compose.ui.platform.LocalContext
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
-import effective.office.marvelproject.network.model.Character
+import effective.office.marvelproject.model.HeroUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
 fun HeroElement(
     modifier: Modifier = Modifier,
-    item: Character,
+    item: HeroUI,
     onCardHeroClicked: (Int) -> Unit
 ) {
 
-    val address = item.thumbnail.path.replace("http", "https") + "." + item.thumbnail.extension
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(address)
+            .data(item.logo)
             .apply(
                 block = fun ImageRequest.Builder.() {
                     scale(Scale.FILL)

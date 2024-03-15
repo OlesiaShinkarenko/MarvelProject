@@ -1,9 +1,9 @@
 package effective.office.marvelproject.presentation.chooseHero.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import effective.office.marvelproject.network.MarvelApi
+import effective.office.marvelproject.network.model.toUI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -25,14 +25,13 @@ class HeroesViewModel : ViewModel() {
             _uiState.value = try {
                 val response = MarvelApi.retrofitService.getHeroes()
                 HeroesUiState.Success(
-                    response.data.results
+                    response.data.results.map {
+                        it.toUI()
+                    }
                 )
             } catch (e: IOException) {
-                Log.d("err",e.message.toString())
                 HeroesUiState.Error
-            }
-            catch (e: HttpException){
-                Log.d("er", e.response()?.message().toString())
+            } catch (e: HttpException) {
                 HeroesUiState.Error
             }
         }

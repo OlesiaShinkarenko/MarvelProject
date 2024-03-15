@@ -43,10 +43,10 @@ fun HeroScreen(
         when (heroUiState) {
             is HeroUiState.Success -> {
                 val hero = heroUiState.hero
-                val address = hero.thumbnail.path.replace("http", "https") + "." + hero.thumbnail.extension
+
                 val painter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(address)
+                        .data(hero.logo)
                         .size(Size.ORIGINAL)
                         .build()
                 )
@@ -75,6 +75,7 @@ fun HeroScreen(
                     )
                 }
             }
+
             is HeroUiState.Loading -> {}
             is HeroUiState.Error -> {}
         }

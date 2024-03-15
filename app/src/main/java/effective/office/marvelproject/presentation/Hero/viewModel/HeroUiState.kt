@@ -1,8 +1,9 @@
 package effective.office.marvelproject.presentation.Hero.viewModel
 
-import effective.office.marvelproject.network.model.Character
+import effective.office.marvelproject.model.HeroUI
+
 interface HeroUiState {
-    data class Success(val hero:Character): HeroUiState
-    object Loading: HeroUiState
-    object Error: HeroUiState
+    data class Success(val hero: HeroUI) : HeroUiState
+    object Loading : HeroUiState
+    object Error : HeroUiState
 }

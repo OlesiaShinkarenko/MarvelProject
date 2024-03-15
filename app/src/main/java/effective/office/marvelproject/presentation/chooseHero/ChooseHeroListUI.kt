@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import effective.office.marvelproject.network.model.Character
+import effective.office.marvelproject.model.HeroUI
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Shape
 import effective.office.marvelproject.ui.theme.Size
@@ -24,7 +24,7 @@ import effective.office.marvelproject.ui.theme.Size
 @Composable
 fun ChooseHeroListUI(
     modifier: Modifier = Modifier,
-    listHero: List<Character>,
+    listHero: List<HeroUI>,
     onCardHeroClicked: (Int) -> Unit
 ) {
     val state = rememberLazyListState()
@@ -44,7 +44,7 @@ fun ChooseHeroListUI(
         horizontalArrangement = Arrangement.spacedBy(Size.size20),
         flingBehavior = flingBehavior,
     ) {
-        items(listHero) {  item ->
+        items(listHero) { item ->
             HeroElement(
                 modifier = Modifier
                     .width(Size.size330)
