@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -88,24 +86,5 @@ fun HeroScreen(
                 tint = AppTheme.colors.mainColor,
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun HeroScreenPreview() {
-    Surface(
-        color = AppTheme.colors.backgroundColor
-    ) {
-        /*
-        HeroScreen(
-            item = Heroe(
-                logo = "https://iili.io/JMnAfIV.png",
-                name = R.string.hero1,
-                description = R.string.description1
-            ),
-            modifier = Modifier.fillMaxSize()
-        ) {}
-         */
     }
 }
