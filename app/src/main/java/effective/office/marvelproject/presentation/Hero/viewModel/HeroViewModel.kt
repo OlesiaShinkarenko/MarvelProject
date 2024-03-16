@@ -21,12 +21,12 @@ class HeroViewModel : ViewModel() {
                     id = id
                 )
                 HeroUiState.Success(
-                    response.data.results[0].toUI()
+                    response.body()!!.data.results[0].toUI()
                 )
             } catch (e: IOException) {
-                HeroUiState.Error
+                HeroUiState.Error("Ошибка соединения")
             } catch (e: HttpException) {
-                HeroUiState.Error
+                HeroUiState.Error("Ошибка на сервере")
             }
         }
     }

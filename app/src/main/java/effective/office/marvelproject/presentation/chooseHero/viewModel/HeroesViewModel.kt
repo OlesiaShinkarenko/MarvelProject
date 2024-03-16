@@ -23,16 +23,16 @@ class HeroesViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.value = HeroesUiState.Loading
             _uiState.value = try {
-                val response = MarvelApi.retrofitService.getHeroes()
+                val response = MarvelApi.retrofitService.getHeroes().body()!!
                 HeroesUiState.Success(
                     response.data.results.map {
                         it.toUI()
                     }
                 )
             } catch (e: IOException) {
-                HeroesUiState.Error
+                HeroesUiState.Error("Ошибка соединения")
             } catch (e: HttpException) {
-                HeroesUiState.Error
+                HeroesUiState.Error("Ошибка на сервере")
             }
         }
     }

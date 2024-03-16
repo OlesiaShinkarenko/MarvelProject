@@ -27,12 +27,19 @@ android {
         val properties = Properties()
         properties.load(keystoreFile.inputStream())
 
-        val apiKey = properties.getProperty("API_KEY") ?:""
+        val apiKey = properties.getProperty("API_KEY") ?: ""
+        val privateApiKey = properties.getProperty("PRIVATE_API_KEY") ?: ""
 
         buildConfigField(
             type = "String",
             name = "API_KEY",
             value = apiKey
+        )
+
+        buildConfigField(
+            type = "String",
+            name = "PRIVATE_API_KEY",
+            value = privateApiKey
         )
     }
 

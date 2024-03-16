@@ -1,5 +1,6 @@
 package effective.office.marvelproject.presentation.Hero
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,6 +39,8 @@ fun HeroScreen(
 ) {
     heroViewModel.fetchHero(id = id)
 
+    val context = LocalContext.current
+
     when (val heroUiState = heroViewModel.uiState.collectAsState().value) {
         is HeroUiState.Success -> {
             HeroContentScreen(
@@ -50,7 +53,9 @@ fun HeroScreen(
             LoadingIndicator()
         }
 
-        is HeroUiState.Error -> {}
+        is HeroUiState.Error -> {
+            Toast.makeText(context, heroUiState.error, Toast.LENGTH_SHORT).show()
+        }
     }
 
     IconButton(

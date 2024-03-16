@@ -6,6 +6,7 @@ import effective.office.marvelproject.BuildConfig
 import effective.office.marvelproject.network.model.MoshiHeroesResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -39,14 +40,14 @@ private val client = OkHttpClient().newBuilder()
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
-class Constant{
-    companion object{
+
+class Constant {
+    companion object {
         val ts = Timestamp(System.currentTimeMillis()).time.toString()
-        const val PRIVATE_KEY = "0ddaddbaca3b9df2847c4b09977e9169af7cbd49"
-        fun hash():String{
-            val  input = "$ts$PRIVATE_KEY${BuildConfig.API_KEY}"
+        fun hash(): String {
+            val input = "$ts${BuildConfig.PRIVATE_API_KEY}${BuildConfig.API_KEY}"
             val md = MessageDigest.getInstance("MD5")
-            return BigInteger(1,md.digest(input.toByteArray())).toString(16).padStart(32,'0')
+            return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
         }
     }
 }
@@ -62,15 +63,15 @@ interface MarvelApiService {
     @GET("characters")
     suspend fun getHeroes(
         @Query("ts") ts: String = Constant.ts,
-        @Query("hash") hash:String = Constant.hash(),
-    ): MoshiHeroesResponse
+        @Query("hash") hash: String = Constant.hash(),
+    ): Response<MoshiHeroesResponse>
 
     @GET("characters/{characterId}")
     suspend fun getHero(
-        @Path("characterId") id:Int,
+        @Path("characterId") id: Int,
         @Query("ts") ts: String = Constant.ts,
-        @Query("hash") hash:String = Constant.hash()
-    ): MoshiHeroesResponse
+        @Query("hash") hash: String = Constant.hash()
+    ): Response<MoshiHeroesResponse>
 
 }
 
