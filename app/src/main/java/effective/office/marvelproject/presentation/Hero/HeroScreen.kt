@@ -40,37 +40,37 @@ fun HeroScreen(
     heroViewModel.fetchHero(id = id)
 
     val context = LocalContext.current
+    Box(modifier = modifier){
+        when (val heroUiState = heroViewModel.uiState.collectAsState().value) {
+            is HeroUiState.Success -> {
+                HeroContentScreen(
+                    hero = heroUiState.hero,
+                )
+            }
 
-    when (val heroUiState = heroViewModel.uiState.collectAsState().value) {
-        is HeroUiState.Success -> {
-            HeroContentScreen(
-                modifier = modifier,
-                heroUiState.hero,
+            is HeroUiState.Loading -> {
+                LoadingIndicator()
+            }
+
+            is HeroUiState.Error -> {
+                Toast.makeText(context, heroUiState.error, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        IconButton(
+            onClick = onBackClicked,
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = stringResource(id = R.string.back),
+                tint = AppTheme.colors.mainColor,
             )
         }
-
-        is HeroUiState.Loading -> {
-            LoadingIndicator()
-        }
-
-        is HeroUiState.Error -> {
-            Toast.makeText(context, heroUiState.error, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    IconButton(
-        onClick = onBackClicked,
-    ) {
-        Icon(
-            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-            contentDescription = stringResource(id = R.string.back),
-            tint = AppTheme.colors.mainColor,
-        )
     }
 }
 
 @Composable
-fun HeroContentScreen(modifier: Modifier, hero: HeroUI) {
+fun HeroContentScreen(modifier: Modifier= Modifier, hero: HeroUI) {
     Box(modifier = modifier) {
         val painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
