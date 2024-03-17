@@ -1,10 +1,11 @@
 package effective.office.marvelproject.network.model
 
-import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class MoshiHeroesResponse(
-    @Json(name = "data")
-    val data: HeroesDataContainer,
+data class Character(
+    val id: Int,
+    val name: String,
+    val description: String,
+    val thumbnail: Thumbnail
 )
