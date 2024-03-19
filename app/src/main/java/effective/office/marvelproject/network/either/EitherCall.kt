@@ -1,5 +1,6 @@
 package effective.office.marvelproject.network.either
 
+import effective.office.marvelproject.R
 import effective.office.marvelproject.network.model.ErrorResponse
 import okhttp3.Request
 import okio.Timeout
@@ -40,8 +41,8 @@ class EitherCall<R>(
 
             override fun onFailure(call: Call<R>, throwable: Throwable) {
                 val error = when (throwable) {
-                    is IOException -> ErrorResponse("Ошибка соединения")
-                    else -> ErrorResponse("Неизвестная ошибка")
+                    is IOException -> ErrorResponse(effective.office.marvelproject.R.string.connection_error)
+                    else -> ErrorResponse(effective.office.marvelproject.R.string.unknown_error)
                 }
                 callback.onResponse(this@EitherCall, Response.success(Either.Fail(error)))
             }

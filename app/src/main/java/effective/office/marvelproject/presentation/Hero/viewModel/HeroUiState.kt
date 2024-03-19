@@ -5,5 +5,5 @@ import effective.office.marvelproject.model.HeroUI
 interface HeroUiState {
     data class Success(val hero: HeroUI) : HeroUiState
     object Loading : HeroUiState
-    data class Error(val error: String) : HeroUiState
+    data class Error(val error: Int) : HeroUiState
 }

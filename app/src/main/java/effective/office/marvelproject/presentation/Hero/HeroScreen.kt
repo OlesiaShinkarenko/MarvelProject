@@ -53,7 +53,7 @@ fun HeroScreen(
             }
 
             is HeroUiState.Error -> {
-                Toast.makeText(context, heroUiState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, stringResource(id = heroUiState.error), Toast.LENGTH_SHORT).show()
             }
         }
 

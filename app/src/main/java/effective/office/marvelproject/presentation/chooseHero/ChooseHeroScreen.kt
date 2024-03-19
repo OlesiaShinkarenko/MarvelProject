@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesUiState
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
@@ -40,7 +41,7 @@ fun ChooseHeroScreen(
             )
 
             is HeroesUiState.Error -> {
-                Toast.makeText(context, heroesUiState.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, stringResource(id = heroesUiState.message), Toast.LENGTH_SHORT).show()
             }
 
             is HeroesUiState.Loading -> {
