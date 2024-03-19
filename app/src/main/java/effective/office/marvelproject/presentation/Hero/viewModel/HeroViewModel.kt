@@ -4,11 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import effective.office.marvelproject.mapper.toUI
 import effective.office.marvelproject.network.MarvelApi
+import effective.office.marvelproject.network.either.Either
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
 
 class HeroViewModel : ViewModel() {
     private var _uiState = MutableStateFlow<HeroUiState>(HeroUiState.Loading)
@@ -16,17 +15,15 @@ class HeroViewModel : ViewModel() {
 
     fun fetchHero(id: Int) {
         viewModelScope.launch {
-            _uiState.value = try {
-                val response = MarvelApi.retrofitService.getHero(
-                    id = id
+            val response = MarvelApi.retrofitService.getHero(id = id)
+            _uiState.value = when (response) {
+                is Either.Fail -> HeroUiState.Error(
+                    response.value.description
                 )
-                HeroUiState.Success(
-                    response.body()!!.data.results[0].toUI()
+
+                is Either.Success -> HeroUiState.Success(
+                    response.value.data.results[0].toUI()
                 )
-            } catch (e: IOException) {
-                HeroUiState.Error("Ошибка соединения")
-            } catch (e: HttpException) {
-                HeroUiState.Error("Ошибка на сервере")
             }
         }
     }

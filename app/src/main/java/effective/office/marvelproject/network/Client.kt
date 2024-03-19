@@ -3,6 +3,7 @@ package effective.office.marvelproject.network
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import effective.office.marvelproject.BuildConfig
+import effective.office.marvelproject.network.either.EitherCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -50,6 +51,7 @@ class Constant {
 
 val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addCallAdapterFactory(EitherCallAdapterFactory())
     .client(client)
     .baseUrl(BASE_URL)
     .build()
