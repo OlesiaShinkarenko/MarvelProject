@@ -5,22 +5,15 @@ import effective.office.marvelproject.network.model.ErrorResponse
 import effective.office.marvelproject.network.model.MoshiHeroesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface MarvelApiService {
     @GET("characters")
-    suspend fun getHeroes(
-        @Query("ts") ts: String = Constant.ts,
-        @Query("hash") hash: String = Constant.hash(),
-    ): Either<ErrorResponse, MoshiHeroesResponse>
+    suspend fun getHeroes(): Either<ErrorResponse, MoshiHeroesResponse>
 
     @GET("characters/{characterId}")
     suspend fun getHero(
-        @Path("characterId") id: Int,
-        @Query("ts") ts: String = Constant.ts,
-        @Query("hash") hash: String = Constant.hash()
+        @Path("characterId") id: Int
     ): Either<ErrorResponse, MoshiHeroesResponse>
-
 }
 
 object MarvelApi {

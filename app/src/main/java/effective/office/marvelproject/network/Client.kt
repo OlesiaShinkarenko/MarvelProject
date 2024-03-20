@@ -19,6 +19,8 @@ private val authInterceptor = Interceptor { chain ->
     val newUrl = chain.request().url
         .newBuilder()
         .addQueryParameter("apikey", BuildConfig.API_KEY)
+        .addQueryParameter("ts", Constant.ts)
+        .addQueryParameter("hash", Constant.hash())
         .build()
 
     val newRequest = chain.request()
@@ -28,6 +30,7 @@ private val authInterceptor = Interceptor { chain ->
 
     chain.proceed(newRequest)
 }
+
 
 private val client = OkHttpClient().newBuilder()
     .addInterceptor(authInterceptor)
