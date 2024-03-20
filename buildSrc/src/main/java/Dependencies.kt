@@ -12,6 +12,7 @@ object Dependencies {
         const val retrofit = "2.9.0"
         const val moshi = "1.15.0"
         const val okhttp = "4.12.0"
+        const val timber = "4.7.1"
     }
 
     object AndroidX {
@@ -47,5 +48,9 @@ object Dependencies {
     object Moshi {
         const val moshi = "com.squareup.moshi:moshi-kotlin:${Version.moshi}"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Version.moshi}"
+    }
+
+    object Timber {
+        const val timber = "com.jakewharton.timber:timber:${Version.timber}"
     }
 }

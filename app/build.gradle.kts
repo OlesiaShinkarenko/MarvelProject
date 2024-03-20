@@ -100,4 +100,6 @@ dependencies {
 
     implementation(Dependencies.Moshi.moshi)
     kapt(Dependencies.Moshi.codegen)
+
+    implementation(Dependencies.Timber.timber)
 }

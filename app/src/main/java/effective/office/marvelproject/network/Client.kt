@@ -6,11 +6,14 @@ import effective.office.marvelproject.BuildConfig
 import effective.office.marvelproject.network.either.EitherCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import timber.log.Timber
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.sql.Timestamp
+
 
 private const val BASE_URL =
     "https://gateway.marvel.com/v1/public/"
@@ -31,9 +34,15 @@ private val authInterceptor = Interceptor { chain ->
     chain.proceed(newRequest)
 }
 
+private val logInterceptor =
+    HttpLoggingInterceptor { message -> Timber.tag("Okhttp").d(message) }.apply {
+        level = HttpLoggingInterceptor.Level.BASIC
+    }
+
 
 private val client = OkHttpClient().newBuilder()
     .addInterceptor(authInterceptor)
+    .addNetworkInterceptor(logInterceptor)
     .build()
 
 private val moshi = Moshi.Builder()
