@@ -12,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,10 +38,13 @@ fun HeroScreen(
     onBackClicked: () -> Unit,
     heroViewModel: HeroViewModel = viewModel()
 ) {
-    heroViewModel.fetchHero(id = id)
+    LaunchedEffect(heroViewModel.uiState) {
+        heroViewModel.fetchHero(id = id)
+    }
+
 
     val context = LocalContext.current
-    Box(modifier = modifier){
+    Box(modifier = modifier) {
         when (val heroUiState = heroViewModel.uiState.collectAsState().value) {
             is HeroUiState.Success -> {
                 HeroContentScreen(
@@ -53,7 +57,8 @@ fun HeroScreen(
             }
 
             is HeroUiState.Error -> {
-                Toast.makeText(context, stringResource(id = heroUiState.error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, stringResource(id = heroUiState.error), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -70,7 +75,7 @@ fun HeroScreen(
 }
 
 @Composable
-fun HeroContentScreen(modifier: Modifier= Modifier, hero: HeroUI) {
+fun HeroContentScreen(modifier: Modifier = Modifier, hero: HeroUI) {
     Box(modifier = modifier) {
         val painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)

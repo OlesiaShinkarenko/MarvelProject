@@ -15,6 +15,7 @@ class HeroViewModel : ViewModel() {
 
     fun fetchHero(id: Int) {
         viewModelScope.launch {
+            _uiState.value = HeroUiState.Loading
             val response = MarvelApi.retrofitService.getHero(id = id)
             _uiState.value = when (response) {
                 is Either.Fail -> HeroUiState.Error(
