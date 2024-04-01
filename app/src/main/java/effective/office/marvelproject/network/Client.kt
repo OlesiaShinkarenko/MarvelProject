@@ -2,7 +2,6 @@ package effective.office.marvelproject.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import effective.office.marvelproject.BuildConfig
 import effective.office.marvelproject.network.either.EitherCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -21,7 +20,7 @@ private const val BASE_URL =
 private val authInterceptor = Interceptor { chain ->
     val newUrl = chain.request().url
         .newBuilder()
-        .addQueryParameter("apikey", BuildConfig.API_KEY)
+        .addQueryParameter("apikey", Constant.API_KEY)
         .addQueryParameter("ts", Constant.ts)
         .addQueryParameter("hash", Constant.hash())
         .build()
@@ -51,9 +50,11 @@ private val moshi = Moshi.Builder()
 
 class Constant {
     companion object {
+        const val API_KEY = "0942deebe7c90aafc2a7ec87d85c34dd"
+        const val PRIVATE_API_KEY = "0ddaddbaca3b9df2847c4b09977e9169af7cbd49"
         val ts = Timestamp(System.currentTimeMillis()).time.toString()
         fun hash(): String {
-            val input = "$ts${BuildConfig.PRIVATE_API_KEY}${BuildConfig.API_KEY}"
+            val input = "$ts${PRIVATE_API_KEY}${API_KEY}"
             val md = MessageDigest.getInstance("MD5")
             return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
         }
