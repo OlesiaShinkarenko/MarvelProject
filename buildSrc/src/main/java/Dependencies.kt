@@ -13,6 +13,8 @@ object Dependencies {
         const val moshi = "1.15.0"
         const val okhttp = "4.12.0"
         const val timber = "4.7.1"
+        const val paging = "3.2.1"
+        const val paging_jetpack = "3.3.0-alpha05"
     }
 
     object AndroidX {
@@ -52,5 +54,10 @@ object Dependencies {
 
     object Timber {
         const val timber = "com.jakewharton.timber:timber:${Version.timber}"
+    }
+
+    object Pager {
+        const val paging_runtime = "androidx.paging:paging-runtime:${Version.paging}"
+        const val paging = "androidx.paging:paging-compose:${Version.paging_jetpack}"
     }
 }

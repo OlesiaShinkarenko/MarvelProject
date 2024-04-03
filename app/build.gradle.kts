@@ -102,4 +102,7 @@ dependencies {
     kapt(Dependencies.Moshi.codegen)
 
     implementation(Dependencies.Timber.timber)
+    implementation(Dependencies.Pager.paging)
+    implementation(Dependencies.Pager.paging_runtime)
+    implementation ("com.github.skydoves:retrofit-adapters-paging:1.0.0")
 }
