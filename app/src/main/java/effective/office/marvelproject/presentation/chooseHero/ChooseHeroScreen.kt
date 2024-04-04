@@ -32,7 +32,8 @@ fun ChooseHeroScreen(
         )
         when (heroesUiState.loadState.refresh) {
             is LoadState.Error -> {
-                Toast.makeText(context,
+                Toast.makeText(
+                    context,
                     (heroesUiState.loadState.refresh as LoadState.Error).error.message?.let {
                         stringResource(
                             id = it.toInt()
@@ -55,6 +56,21 @@ fun ChooseHeroScreen(
                     onCardHeroClicked = onCardHeroClicked
                 )
             }
+        }
+
+        when (heroesUiState.loadState.append) {
+            is LoadState.Error -> {
+                Toast.makeText(
+                    context,
+                    (heroesUiState.loadState.append as LoadState.Error).error.message?.let {
+                        stringResource(
+                            id = it.toInt()
+                        )
+                    }, Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            else -> {}
         }
     }
 }

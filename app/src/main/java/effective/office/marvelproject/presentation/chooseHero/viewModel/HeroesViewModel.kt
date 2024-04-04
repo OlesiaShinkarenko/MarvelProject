@@ -27,7 +27,7 @@ class HeroesViewModel : ViewModel() {
         viewModelScope.launch {
             Pager(
                 config = PagingConfig(
-                    10,
+                    20,
                     enablePlaceholders = true
                 )
             ) {
