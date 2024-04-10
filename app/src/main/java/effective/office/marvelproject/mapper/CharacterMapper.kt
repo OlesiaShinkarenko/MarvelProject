@@ -1,11 +1,11 @@
 package effective.office.marvelproject.mapper
 
+import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.data.network.model.Character
-import effective.office.marvelproject.model.CharacterUI
 
-fun Character.toUI() = CharacterUI(
+fun Character.toEntity() = CharacterEntity(
     id = id,
     name = name,
     description = description,
-    logo = "${thumbnail.path.replace("http", "https")}.${thumbnail.extension}"
+    image = "${thumbnail.path.replace("http", "https")}.${thumbnail.extension}"
 )
