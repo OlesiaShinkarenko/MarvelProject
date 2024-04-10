@@ -24,7 +24,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
-import effective.office.marvelproject.model.HeroUI
+import effective.office.marvelproject.model.CharacterUI
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroUiState
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
 import effective.office.marvelproject.presentation.components.LoadingIndicator
@@ -75,7 +75,7 @@ fun HeroScreen(
 }
 
 @Composable
-fun HeroContentScreen(modifier: Modifier = Modifier, hero: HeroUI) {
+fun HeroContentScreen(modifier: Modifier = Modifier, hero: CharacterUI) {
     Box(modifier = modifier) {
         val painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)

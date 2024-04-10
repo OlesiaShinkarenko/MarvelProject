@@ -14,14 +14,14 @@ import androidx.compose.ui.platform.LocalContext
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
-import effective.office.marvelproject.model.HeroUI
+import effective.office.marvelproject.model.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
 fun HeroElement(
     modifier: Modifier = Modifier,
-    item: HeroUI,
+    item: CharacterUI,
     onCardHeroClicked: (Int) -> Unit
 ) {
 
