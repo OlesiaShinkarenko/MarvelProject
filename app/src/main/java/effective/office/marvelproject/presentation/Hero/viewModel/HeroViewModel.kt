@@ -2,9 +2,9 @@ package effective.office.marvelproject.presentation.Hero.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import effective.office.marvelproject.data.network.either.Either
+import effective.office.marvelproject.data.network.services.MarvelApi
 import effective.office.marvelproject.mapper.toUI
-import effective.office.marvelproject.network.MarvelApi
-import effective.office.marvelproject.network.either.Either
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

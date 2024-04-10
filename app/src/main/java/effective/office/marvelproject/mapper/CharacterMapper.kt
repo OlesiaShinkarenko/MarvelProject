@@ -1,7 +1,7 @@
 package effective.office.marvelproject.mapper
 
+import effective.office.marvelproject.data.network.model.Character
 import effective.office.marvelproject.model.HeroUI
-import effective.office.marvelproject.network.model.Character
 
 fun Character.toUI() = HeroUI(
     id = id,

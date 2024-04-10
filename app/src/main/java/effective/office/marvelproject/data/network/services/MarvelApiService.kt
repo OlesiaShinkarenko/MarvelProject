@@ -1,8 +1,8 @@
-package effective.office.marvelproject.network
+package effective.office.marvelproject.data.network.services
 
-import effective.office.marvelproject.network.either.Either
-import effective.office.marvelproject.network.model.ErrorResponse
-import effective.office.marvelproject.network.model.MoshiHeroesResponse
+import effective.office.marvelproject.data.network.either.Either
+import effective.office.marvelproject.data.network.model.ErrorResponse
+import effective.office.marvelproject.data.network.model.MoshiHeroesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

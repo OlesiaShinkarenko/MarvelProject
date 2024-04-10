@@ -1,4 +1,4 @@
-package effective.office.marvelproject.network.model
+package effective.office.marvelproject.data.network.model
 
 import effective.office.marvelproject.R
 

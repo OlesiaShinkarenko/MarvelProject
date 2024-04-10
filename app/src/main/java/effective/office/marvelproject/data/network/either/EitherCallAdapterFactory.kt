@@ -1,6 +1,6 @@
-package effective.office.marvelproject.network.either
+package effective.office.marvelproject.data.network.either
 
-import effective.office.marvelproject.network.model.ErrorResponse
+import effective.office.marvelproject.data.network.model.ErrorResponse
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

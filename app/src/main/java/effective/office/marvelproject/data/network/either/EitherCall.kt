@@ -1,7 +1,6 @@
-package effective.office.marvelproject.network.either
+package effective.office.marvelproject.data.network.either
 
-import effective.office.marvelproject.R
-import effective.office.marvelproject.network.model.ErrorResponse
+import effective.office.marvelproject.data.network.model.ErrorResponse
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call

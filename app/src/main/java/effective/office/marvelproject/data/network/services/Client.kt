@@ -1,8 +1,8 @@
-package effective.office.marvelproject.network
+package effective.office.marvelproject.data.network.services
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import effective.office.marvelproject.network.either.EitherCallAdapterFactory
+import effective.office.marvelproject.data.network.either.EitherCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -54,7 +54,7 @@ class Constant {
         const val PRIVATE_API_KEY = "0ddaddbaca3b9df2847c4b09977e9169af7cbd49"
         val ts = Timestamp(System.currentTimeMillis()).time.toString()
         fun hash(): String {
-            val input = "$ts${PRIVATE_API_KEY}${API_KEY}"
+            val input = "$ts$PRIVATE_API_KEY$API_KEY"
             val md = MessageDigest.getInstance("MD5")
             return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
         }
