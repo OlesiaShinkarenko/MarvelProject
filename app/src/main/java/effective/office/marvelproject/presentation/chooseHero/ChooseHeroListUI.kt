@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.compose.LazyPagingItems
 import effective.office.marvelproject.R
+import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.model.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
@@ -29,7 +30,7 @@ import effective.office.marvelproject.ui.theme.Size
 @Composable
 fun ChooseHeroListUI(
     modifier: Modifier = Modifier,
-    listHero: LazyPagingItems<CharacterUI>,
+    listHero: LazyPagingItems<CharacterEntity>,
     onCardHeroClicked: (Int) -> Unit
 ) {
     val state = rememberLazyListState()

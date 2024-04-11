@@ -1,27 +1,28 @@
 package effective.office.marvelproject.presentation.chooseHero.viewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import effective.office.marvelproject.model.CharacterUI
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.cachedIn
+import effective.office.marvelproject.MarvelApplication
+import effective.office.marvelproject.repositories.MarvelRepository
 
-class HeroesViewModel : ViewModel() {
-    private var _uiState: MutableStateFlow<PagingData<CharacterUI>> =
-        MutableStateFlow(PagingData.empty())
-    val uiState = _uiState.asStateFlow()
+class HeroesViewModel(private val repository: MarvelRepository) : ViewModel() {
+    @OptIn(ExperimentalPagingApi::class)
+    val characters = repository.getCharacterPage().cachedIn(
+        viewModelScope
+    )
 
-
-
-    init {
-        fetchHeroes()
-    }
-
-    private fun fetchHeroes() {
-        viewModelScope.launch {
-
+    companion object {
+        val Factory = viewModelFactory {
+            initializer {
+                val app =
+                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as MarvelApplication
+                HeroesViewModel(app.repository)
+            }
         }
     }
 }

@@ -57,7 +57,7 @@ class MarvelMediator(private val database: MarvelAppDatabase) :
                     }
                     characterDao.insertAll(data)
                     remoteKeyDao.insert(
-                        RemoteKey("all", loadKey + 20)
+                        RemoteKey("all", loadKey + 100)
                     )
                 }
 
