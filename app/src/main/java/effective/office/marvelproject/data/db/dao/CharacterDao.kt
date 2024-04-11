@@ -12,8 +12,14 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(characters: List<CharacterEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(characters: CharacterEntity)
+
     @Query("SELECT * FROM  characters")
     fun getCharacters(): PagingSource<Int, CharacterEntity>
+
+    @Query("SELECT * FROM characters where character_id = :id")
+    suspend fun getCharacter(id: Int): CharacterEntity?
 
     @Query("DELETE FROM characters")
     suspend fun clear()

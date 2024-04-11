@@ -27,6 +27,7 @@ import effective.office.marvelproject.R
 import effective.office.marvelproject.model.CharacterUI
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroUiState
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
+import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel.Companion.Factory
 import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
@@ -36,12 +37,13 @@ fun HeroScreen(
     modifier: Modifier = Modifier,
     id: Int,
     onBackClicked: () -> Unit,
-    heroViewModel: HeroViewModel = viewModel()
+    heroViewModel: HeroViewModel = viewModel(
+        factory = Factory
+    )
 ) {
     LaunchedEffect(heroViewModel.uiState) {
         heroViewModel.fetchHero(id = id)
     }
-
 
     val context = LocalContext.current
     Box(modifier = modifier) {
