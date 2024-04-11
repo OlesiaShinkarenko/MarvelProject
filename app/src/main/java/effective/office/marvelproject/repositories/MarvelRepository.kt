@@ -19,6 +19,7 @@ class MarvelRepository(
     private val characterDao = database.characterDao()
 
     private val PAGE_SIZE = 20
+
     @ExperimentalPagingApi
     fun getCharacterPage() = Pager(
         config = PagingConfig(

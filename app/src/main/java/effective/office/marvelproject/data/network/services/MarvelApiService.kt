@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface MarvelApiService {
     @GET("characters")
     suspend fun getHeroes(
-        @Query("limit") limit:Int,
+        @Query("limit") limit: Int,
         @Query("offset") offset: Int
     ): Either<ErrorResponse, MoshiHeroesResponse>
 
