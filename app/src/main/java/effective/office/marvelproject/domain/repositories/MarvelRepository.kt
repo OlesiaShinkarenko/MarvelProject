@@ -1,4 +1,4 @@
-package effective.office.marvelproject.repositories
+package effective.office.marvelproject.domain.repositories
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -6,12 +6,12 @@ import androidx.paging.PagingConfig
 import androidx.room.withTransaction
 import effective.office.marvelproject.data.MarvelMediator
 import effective.office.marvelproject.data.db.MarvelAppDatabase
+import effective.office.marvelproject.data.mapper.toEntity
+import effective.office.marvelproject.data.mapper.toUI
 import effective.office.marvelproject.data.network.either.Either
 import effective.office.marvelproject.data.network.model.ErrorResponse
 import effective.office.marvelproject.data.network.services.MarvelApi
-import effective.office.marvelproject.mapper.toEntity
-import effective.office.marvelproject.mapper.toUI
-import effective.office.marvelproject.model.CharacterUI
+import effective.office.marvelproject.presentation.model.CharacterUI
 
 class MarvelRepository(
     private val database: MarvelAppDatabase

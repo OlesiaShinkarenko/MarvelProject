@@ -1,4 +1,4 @@
-package effective.office.marvelproject.model
+package effective.office.marvelproject.presentation.model
 
 data class CharacterUI(
     val id: Int,

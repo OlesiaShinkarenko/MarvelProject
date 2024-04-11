@@ -8,7 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.cachedIn
 import effective.office.marvelproject.MarvelApplication
-import effective.office.marvelproject.repositories.MarvelRepository
+import effective.office.marvelproject.domain.repositories.MarvelRepository
 
 class HeroesViewModel(private val repository: MarvelRepository) : ViewModel() {
     @OptIn(ExperimentalPagingApi::class)

@@ -2,7 +2,7 @@ package effective.office.marvelproject
 
 import android.app.Application
 import effective.office.marvelproject.data.db.MarvelAppDatabase
-import effective.office.marvelproject.repositories.MarvelRepository
+import effective.office.marvelproject.domain.repositories.MarvelRepository
 import timber.log.Timber
 
 class MarvelApplication : Application() {

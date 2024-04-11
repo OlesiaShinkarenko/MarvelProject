@@ -27,10 +27,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
-import effective.office.marvelproject.model.CharacterUI
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel.Companion.Factory
 import effective.office.marvelproject.presentation.components.LoadingIndicator
+import effective.office.marvelproject.presentation.model.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 

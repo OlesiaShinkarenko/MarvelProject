@@ -1,8 +1,8 @@
-package effective.office.marvelproject.mapper
+package effective.office.marvelproject.data.mapper
 
 import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.data.network.model.Character
-import effective.office.marvelproject.model.CharacterUI
+import effective.office.marvelproject.presentation.model.CharacterUI
 
 fun Character.toEntity() = CharacterEntity(
     id = id,

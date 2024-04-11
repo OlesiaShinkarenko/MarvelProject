@@ -1,6 +1,6 @@
 package effective.office.marvelproject.presentation.Hero.viewModel
 
-import effective.office.marvelproject.model.CharacterUI
+import effective.office.marvelproject.presentation.model.CharacterUI
 
 data class HeroUiState(
     val hero: CharacterUI? = null,

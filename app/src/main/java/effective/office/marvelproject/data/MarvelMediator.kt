@@ -8,9 +8,9 @@ import androidx.room.withTransaction
 import effective.office.marvelproject.data.db.MarvelAppDatabase
 import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.data.db.models.RemoteKey
+import effective.office.marvelproject.data.mapper.toEntity
 import effective.office.marvelproject.data.network.either.Either
 import effective.office.marvelproject.data.network.services.MarvelApi
-import effective.office.marvelproject.mapper.toEntity
 
 @OptIn(ExperimentalPagingApi::class)
 class MarvelMediator(private val database: MarvelAppDatabase) :

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import effective.office.marvelproject.MarvelApplication
 import effective.office.marvelproject.data.network.either.Either
-import effective.office.marvelproject.repositories.MarvelRepository
+import effective.office.marvelproject.domain.repositories.MarvelRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
