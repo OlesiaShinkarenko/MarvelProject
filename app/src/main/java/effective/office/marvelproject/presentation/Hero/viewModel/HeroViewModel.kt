@@ -6,20 +6,45 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import effective.office.marvelproject.MarvelApplication
+import effective.office.marvelproject.data.network.either.Either
 import effective.office.marvelproject.repositories.MarvelRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class HeroViewModel(private val repository: MarvelRepository) : ViewModel() {
-    private var _uiState = MutableStateFlow<HeroUiState>(HeroUiState.Loading)
+    private var _uiState = MutableStateFlow(HeroUiState())
     val uiState = _uiState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            _uiState.emit(
+                HeroUiState(isLoading = true)
+            )
+        }
+    }
 
     fun fetchHero(id: Int) {
         viewModelScope.launch {
-            _uiState.value = HeroUiState.Loading
-            val response = repository.getCharacter(id)
-            _uiState.value = HeroUiState.Success(response)
+            when (val response = repository.getCharacter(id)) {
+                is Either.Fail -> {
+                    _uiState.emit(
+                        HeroUiState(
+                            isLoading = false,
+                            errorMessage = response.value.description
+                        )
+                    )
+                }
+
+                is Either.Success -> {
+                    _uiState.emit(
+                        HeroUiState(
+                            isLoading = false,
+                            hero = response.value
+                        )
+                    )
+                }
+            }
         }
     }
 

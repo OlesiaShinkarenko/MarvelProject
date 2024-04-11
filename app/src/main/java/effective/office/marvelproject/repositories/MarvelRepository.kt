@@ -7,6 +7,7 @@ import androidx.room.withTransaction
 import effective.office.marvelproject.data.MarvelMediator
 import effective.office.marvelproject.data.db.MarvelAppDatabase
 import effective.office.marvelproject.data.network.either.Either
+import effective.office.marvelproject.data.network.model.ErrorResponse
 import effective.office.marvelproject.data.network.services.MarvelApi
 import effective.office.marvelproject.mapper.toEntity
 import effective.office.marvelproject.mapper.toUI
@@ -28,23 +29,20 @@ class MarvelRepository(
         characterDao.getCharacters()
     }.flow
 
-    suspend fun getCharacter(id: Int): CharacterUI {
-        val character = characterDao.getCharacter(id)
-        if (character == null) {
-            val response = MarvelApi.retrofitService.getHero(id)
-            when (response) {
-                is Either.Success -> {
-                    database.withTransaction {
-                        val characterFromApi = response.value.data.results[0].toEntity()
-                        characterDao.insert(characterFromApi)
-                    }
-                }
-
-                is Either.Fail -> {
-
+    suspend fun getCharacter(id: Int): Either<ErrorResponse, CharacterUI> {
+        characterDao.getCharacter(id) ?: when (val response =
+            MarvelApi.retrofitService.getHero(id)) {
+            is Either.Success -> {
+                database.withTransaction {
+                    val characterFromApi = response.value.data.results[0].toEntity()
+                    characterDao.insert(characterFromApi)
                 }
             }
+
+            is Either.Fail -> {
+                return Either.fail(response.value)
+            }
         }
-        return characterDao.getCharacter(id)!!.toUI()
+        return Either.success(characterDao.getCharacter(id)!!.toUI())
     }
 }
