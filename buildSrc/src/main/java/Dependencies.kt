@@ -61,6 +61,7 @@ object Dependencies {
         const val paging_runtime = "androidx.paging:paging-runtime:${Version.paging}"
         const val paging = "androidx.paging:paging-compose:${Version.paging_jetpack}"
     }
+
     object Room {
         const val room_runtime = "androidx.room:room-runtime:${Version.room}"
         const val room_compiler = "androidx.room:room-compiler:${Version.room}"
