@@ -57,7 +57,7 @@ class MarvelMediator(private val database: MarvelAppDatabase) :
                     }
                     characterDao.insertAll(data)
                     remoteKeyDao.insert(
-                        RemoteKey("all", loadKey + 100)
+                        RemoteKey("all", loadKey + state.config.pageSize)
                     )
                 }
 

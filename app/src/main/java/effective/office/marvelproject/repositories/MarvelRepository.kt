@@ -18,11 +18,12 @@ class MarvelRepository(
 ) {
     private val characterDao = database.characterDao()
 
+    private val PAGE_SIZE = 20
     @ExperimentalPagingApi
     fun getCharacterPage() = Pager(
         config = PagingConfig(
-            pageSize = 100,
-            prefetchDistance = (0.10 * 100).toInt()
+            pageSize = PAGE_SIZE,
+            prefetchDistance = 1
         ),
         remoteMediator = MarvelMediator(database)
     ) {

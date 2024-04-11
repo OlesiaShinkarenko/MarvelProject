@@ -1,27 +1,33 @@
 package effective.office.marvelproject.presentation.chooseHero
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.SnapPositionInLayout
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import effective.office.marvelproject.R
 import effective.office.marvelproject.data.db.models.CharacterEntity
-import effective.office.marvelproject.model.CharacterUI
-import effective.office.marvelproject.ui.theme.AppTheme
+import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Shape
 import effective.office.marvelproject.ui.theme.Size
@@ -41,6 +47,8 @@ fun ChooseHeroListUI(
         )
     }
 
+    val context = LocalContext.current
+
     val flingBehavior = rememberSnapFlingBehavior(snappingLayout)
 
     LazyRow(
@@ -52,46 +60,77 @@ fun ChooseHeroListUI(
     ) {
         items(listHero.itemCount) {
             key(it) {
-                HeroElement(
-                    modifier = Modifier
-                        .width(Size.size330)
-                        .shadow(elevation = Size.size16, shape = Shape.shape10)
-                        .clip(shape = Shape.shape10),
-                    item = listHero[it]!!,
-                    onCardHeroClicked = onCardHeroClicked
-                )
+                listHero[it]?.let { it1 ->
+                    HeroElement(
+                        modifier = Modifier
+                            .width(Size.size330)
+                            .shadow(elevation = Size.size16, shape = Shape.shape10)
+                            .clip(shape = Shape.shape10),
+                        item = it1,
+                        onCardHeroClicked = onCardHeroClicked
+                    )
+                }
+            }
+        }
+        loadState(listHero.loadState, context = context)
+    }
+}
+
+fun LazyListScope.loadState(loadState: CombinedLoadStates, context: Context) {
+    loadState.apply {
+        when {
+            loadState.refresh is LoadState.Loading -> {
+                item {
+                    LoadingIndicator(
+                        Modifier
+                            .fillMaxSize()
+                            .wrapContentWidth(
+                                Alignment.CenterHorizontally
+                            )
+                            .wrapContentHeight(
+                                Alignment.CenterVertically
+                            )
+                    )
+                }
+            }
+
+            loadState.append is LoadState.Loading -> {
+                item {
+                    LoadingIndicator(
+                        Modifier
+                            .fillMaxSize()
+                            .wrapContentWidth(
+                                Alignment.CenterHorizontally
+                            )
+                            .wrapContentHeight(
+                                Alignment.CenterVertically
+                            )
+                    )
+                }
+            }
+
+            loadState.refresh is LoadState.Error -> {
+                val error = (loadState.refresh as LoadState.Error).error.message?.toInt()
+                item {
+                    ShowToast(context, error)
+                }
+            }
+
+            loadState.append is LoadState.Error -> {
+                val error = (loadState.append as LoadState.Error).error.message?.toInt()
+                item {
+                    ShowToast(context, error)
+                }
             }
         }
     }
-
 }
 
-@Preview
 @Composable
-fun ChooseHeroListUIPreview() {
-    val listHero = listOf(
-        CharacterUI(
-            id = 0,
-            logo = "https://iili.io/JMnAfIV.png",
-            name = stringResource(id = R.string.hero1),
-            description = stringResource(id = R.string.description1)
-        ),
-        CharacterUI(
-            id = 0,
-            logo = "https://iili.io/JMnuDI2.png",
-            name = stringResource(R.string.hero2),
-            description = stringResource(R.string.description2),
-        ),
-        CharacterUI(
-            id = 0,
-            logo = "https://iili.io/JMnuyB9.png",
-            name = stringResource(R.string.hero3),
-            description = stringResource(R.string.description3)
-        )
-    )
-    Surface(
-        color = AppTheme.colors.backgroundColor
-    ) {
-
+fun ShowToast(context: Context, error: Int?) {
+    error?.let {
+        Toast.makeText(context, stringResource(id = error), Toast.LENGTH_SHORT)
+            .show()
     }
 }
+

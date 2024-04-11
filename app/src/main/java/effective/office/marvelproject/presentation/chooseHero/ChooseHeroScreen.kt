@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
@@ -20,18 +19,13 @@ fun ChooseHeroScreen(
         factory = Factory
     )
 ) {
-    val context = LocalContext.current
     val heroesUiState = heroesViewModel.characters.collectAsLazyPagingItems()
     Column(
         modifier = modifier.padding(Padding.vertical_24),
     ) {
-
         ChooseHeroHeader(
             modifier = Modifier.fillMaxWidth()
         )
-
-
-
         ChooseHeroListUI(
             listHero = heroesUiState,
             modifier = Modifier
@@ -40,7 +34,5 @@ fun ChooseHeroScreen(
                 .padding(Padding.bottom_32),
             onCardHeroClicked = onCardHeroClicked
         )
-
-
     }
 }
