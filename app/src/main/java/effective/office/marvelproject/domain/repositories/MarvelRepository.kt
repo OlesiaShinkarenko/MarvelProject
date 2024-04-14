@@ -3,14 +3,12 @@ package effective.office.marvelproject.domain.repositories
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.room.withTransaction
+import effective.office.marvelproject.R
 import effective.office.marvelproject.data.MarvelMediator
 import effective.office.marvelproject.data.db.MarvelAppDatabase
-import effective.office.marvelproject.data.mapper.toEntity
 import effective.office.marvelproject.data.mapper.toUI
 import effective.office.marvelproject.data.network.either.Either
 import effective.office.marvelproject.data.network.model.ErrorResponse
-import effective.office.marvelproject.data.network.services.MarvelApi
 import effective.office.marvelproject.presentation.model.CharacterUI
 
 class MarvelRepository(
@@ -32,19 +30,11 @@ class MarvelRepository(
     }.flow
 
     suspend fun getCharacter(id: Int): Either<ErrorResponse, CharacterUI> {
-        characterDao.getCharacter(id) ?: when (val response =
-            MarvelApi.retrofitService.getHero(id)) {
-            is Either.Success -> {
-                database.withTransaction {
-                    val characterFromApi = response.value.data.results[0].toEntity()
-                    characterDao.insert(characterFromApi)
-                }
-            }
-
-            is Either.Fail -> {
-                return Either.fail(response.value)
-            }
+        val character = characterDao.getCharacter(id)
+        return if (character == null) {
+            Either.Fail(ErrorResponse(R.string.unknown_error))
+        } else {
+            Either.Success(character.toUI())
         }
-        return Either.success(characterDao.getCharacter(id)!!.toUI())
     }
 }
