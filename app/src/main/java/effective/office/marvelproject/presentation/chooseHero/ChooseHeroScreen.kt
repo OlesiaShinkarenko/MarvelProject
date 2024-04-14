@@ -19,7 +19,7 @@ fun ChooseHeroScreen(
         factory = Factory
     )
 ) {
-    val heroesUiState = heroesViewModel.characters.collectAsLazyPagingItems()
+    val heroesUiState = heroesViewModel.uiState.collectAsLazyPagingItems()
     Column(
         modifier = modifier.padding(Padding.vertical_24),
     ) {

@@ -26,8 +26,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.presentation.components.LoadingIndicator
+import effective.office.marvelproject.presentation.model.CharacterUI
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Shape
 import effective.office.marvelproject.ui.theme.Size
@@ -36,7 +36,7 @@ import effective.office.marvelproject.ui.theme.Size
 @Composable
 fun ChooseHeroListUI(
     modifier: Modifier = Modifier,
-    listHero: LazyPagingItems<CharacterEntity>,
+    listHero: LazyPagingItems<CharacterUI>,
     onCardHeroClicked: (Int) -> Unit
 ) {
     val state = rememberLazyListState()
@@ -108,6 +108,21 @@ fun LazyListScope.loadState(loadState: CombinedLoadStates, context: Context) {
                     )
                 }
             }
+            loadState.prepend is LoadState.Loading ->{
+                item {
+                    LoadingIndicator(
+                        Modifier
+                            .fillMaxSize()
+                            .wrapContentWidth(
+                                Alignment.CenterHorizontally
+                            )
+                            .wrapContentHeight(
+                                Alignment.CenterVertically
+                            )
+                    )
+                }
+            }
+
 
             loadState.refresh is LoadState.Error -> {
                 val error = (loadState.refresh as LoadState.Error).error.message?.toInt()
