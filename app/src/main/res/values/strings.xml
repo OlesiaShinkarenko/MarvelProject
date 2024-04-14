@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">MarvelProject</string>
     <string name="choose">Choose your hero</string>
+    <string name="logo">logo Marvel studio</string>
+    <string name="back">Back</string>
     <string name="hero1">Deadpool</string>
     <string name="description1">Please don’t make the super suit green…or animated!</string>
     <string name="hero2">Iron Man</string>
     <string name="description2">I AM IRON MAN</string>
     <string name="hero3">Spider man</string>
     <string name="description3">In iron suit</string>
-    <string name="logo">logo Marvel studio</string>
-    <string name="back">Back</string>
+    <string name="not_found">Not Found</string>
+    <string name="error_client">Client error</string>
+    <string name="error_server">Server error</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="connection_error">Connection error</string>
 </resources>

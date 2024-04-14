@@ -1,6 +1,10 @@
+import java.util.Properties
+
+
 plugins {
     id(Plugins.Android.application)
     id(Plugins.Android.jetbrains)
+    id(Plugins.Android.kapt)
 }
 
 android {
@@ -18,6 +22,25 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val keystoreFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        val apiKey = properties.getProperty("API_KEY") ?: ""
+        val privateApiKey = properties.getProperty("PRIVATE_API_KEY") ?: ""
+
+        buildConfigField(
+            type = "String",
+            name = "API_KEY",
+            value = apiKey
+        )
+
+        buildConfigField(
+            type = "String",
+            name = "PRIVATE_API_KEY",
+            value = privateApiKey
+        )
     }
 
     buildTypes {
@@ -30,14 +53,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -47,6 +71,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+kapt {
+    generateStubs = false
 }
 
 dependencies {
@@ -63,4 +90,19 @@ dependencies {
     implementation(Dependencies.Coil.coil)
     implementation(Dependencies.AndroidX.compose_tool)
     implementation(Dependencies.AndroidX.view_model)
+
+
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.converter)
+
+    implementation(Dependencies.OkHttp.okthhp)
+    implementation(Dependencies.OkHttp.interceptor)
+
+    implementation(Dependencies.Moshi.moshi)
+    kapt(Dependencies.Moshi.codegen)
+
+    implementation(Dependencies.Timber.timber)
+    implementation(Dependencies.Pager.paging)
+    implementation(Dependencies.Pager.paging_runtime)
+    implementation ("com.github.skydoves:retrofit-adapters-paging:1.0.0")
 }
