@@ -12,6 +12,9 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(characters: List<CharacterEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(characters: CharacterEntity)
+
     @Query("SELECT * FROM  characters")
     fun getCharacters(): Flow<List<CharacterEntity>>
 

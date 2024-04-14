@@ -4,12 +4,14 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.map
-import effective.office.marvelproject.R
+import androidx.room.withTransaction
 import effective.office.marvelproject.data.db.MarvelAppDatabase
+import effective.office.marvelproject.data.mapper.toEntity
 import effective.office.marvelproject.data.mapper.toUI
 import effective.office.marvelproject.data.network.either.Either
 import effective.office.marvelproject.data.network.model.ErrorResponse
 import effective.office.marvelproject.data.network.paging.MarvelPagingSource
+import effective.office.marvelproject.data.network.services.MarvelApi
 import effective.office.marvelproject.presentation.model.CharacterUI
 import kotlinx.coroutines.flow.map
 
@@ -38,10 +40,22 @@ class MarvelRepository(
 
     suspend fun getCharacter(id: Int): Either<ErrorResponse, CharacterUI> {
         val character = characterDao.getCharacter(id)
-        return if (character == null) {
-            Either.Fail(ErrorResponse(R.string.unknown_error))
+        if (character == null) {
+            when (val remote = MarvelApi.retrofitService.getHero(id)) {
+                is Either.Success -> {
+                    val data = remote.value.data.results[0].toEntity()
+                    database.withTransaction {
+                        characterDao.insert(data)
+                    }
+                    return Either.Success(data.toUI())
+                }
+
+                is Either.Fail -> {
+                    return Either.Fail(remote.value)
+                }
+            }
         } else {
-            Either.Success(character.toUI())
+            return Either.Success(character.toUI())
         }
     }
 }
