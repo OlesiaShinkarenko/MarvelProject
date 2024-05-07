@@ -16,6 +16,7 @@ object Dependencies {
         const val paging = "3.2.1"
         const val paging_jetpack = "3.3.0-alpha05"
         const val room = "2.6.1"
+        const val dagger = "2.44"
     }
 
     object AndroidX {
@@ -67,5 +68,10 @@ object Dependencies {
         const val room_compiler = "androidx.room:room-compiler:${Version.room}"
         const val room_paging = "androidx.room:room-paging:${Version.room}"
         const val room = "androidx.room:room-ktx:${Version.room}"
+    }
+
+    object Dagger {
+        const val hilt = "com.google.dagger:hilt-android:${Version.dagger}"
+        const val compiler = "com.google.dagger:hilt-compiler:${Version.dagger}"
     }
 }

@@ -5,6 +5,7 @@ plugins {
     id(Plugins.Android.application)
     id(Plugins.Android.jetbrains)
     id(Plugins.Android.kapt)
+    id(Plugins.Android.dagger)
 }
 
 android {
@@ -74,6 +75,7 @@ android {
 }
 kapt {
     generateStubs = false
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -109,4 +111,7 @@ dependencies {
     implementation(Dependencies.Room.room)
     implementation(Dependencies.Room.room_paging)
     implementation(Dependencies.Room.room_runtime)
+
+    implementation(Dependencies.Dagger.hilt)
+    kapt(Dependencies.Dagger.compiler)
 }
