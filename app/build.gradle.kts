@@ -4,8 +4,8 @@ import java.util.Properties
 plugins {
     id(Plugins.Android.application)
     id(Plugins.Android.jetbrains)
-    id(Plugins.Android.kapt)
     id(Plugins.Android.dagger)
+    id(Plugins.Android.kapt)
 }
 
 android {

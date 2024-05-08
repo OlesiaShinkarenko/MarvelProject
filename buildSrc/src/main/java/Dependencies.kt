@@ -16,7 +16,7 @@ object Dependencies {
         const val paging = "3.2.1"
         const val paging_jetpack = "3.3.0-alpha05"
         const val room = "2.6.1"
-        const val dagger = "2.44"
+        const val dagger = "2.51.1"
     }
 
     object AndroidX {

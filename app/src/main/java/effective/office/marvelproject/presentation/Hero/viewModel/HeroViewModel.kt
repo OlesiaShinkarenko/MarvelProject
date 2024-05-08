@@ -1,18 +1,18 @@
 package effective.office.marvelproject.presentation.Hero.viewModel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import effective.office.marvelproject.MarvelApplication
+import dagger.hilt.android.lifecycle.HiltViewModel
 import effective.office.marvelproject.data.network.either.Either
-import effective.office.marvelproject.domain.repositories.MarvelRepository
+import effective.office.marvelproject.domain.repositories.MarvelRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HeroViewModel(private val repository: MarvelRepository) : ViewModel() {
+@HiltViewModel
+class HeroViewModel @Inject constructor(private val repository: MarvelRepositoryImpl) :
+    ViewModel() {
     private var _uiState = MutableStateFlow(HeroUiState())
     val uiState = _uiState.asStateFlow()
 
@@ -44,16 +44,6 @@ class HeroViewModel(private val repository: MarvelRepository) : ViewModel() {
                         )
                     )
                 }
-            }
-        }
-    }
-
-    companion object {
-        val Factory = viewModelFactory {
-            initializer {
-                val app =
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as MarvelApplication
-                HeroViewModel(app.repository)
             }
         }
     }

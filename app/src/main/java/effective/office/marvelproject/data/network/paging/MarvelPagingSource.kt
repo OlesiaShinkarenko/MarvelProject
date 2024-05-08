@@ -7,16 +7,16 @@ import effective.office.marvelproject.data.db.MarvelAppDatabase
 import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.data.mapper.toEntity
 import effective.office.marvelproject.data.network.either.Either
-import effective.office.marvelproject.data.network.services.MarvelApi
+import effective.office.marvelproject.data.network.services.MarvelApiService
 
-class MarvelPagingSource(private val database: MarvelAppDatabase) :
+class MarvelPagingSource(private val database: MarvelAppDatabase, private val marvelApiService: MarvelApiService) :
     PagingSource<Int, CharacterEntity>() {
     override fun getRefreshKey(state: PagingState<Int, CharacterEntity>) = state.anchorPosition
 
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterEntity> {
         val page = params.key ?: 0
-        return when (val response = MarvelApi.retrofitService.getHeroes(
+        return when (val response = marvelApiService.getHeroes(
             offset = page
         )) {
             is Either.Fail -> {

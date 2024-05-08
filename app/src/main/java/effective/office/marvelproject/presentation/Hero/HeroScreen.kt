@@ -22,13 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
-import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel.Companion.Factory
 import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.presentation.model.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
@@ -39,9 +37,7 @@ fun HeroScreen(
     modifier: Modifier = Modifier,
     id: Int,
     onBackClicked: () -> Unit,
-    heroViewModel: HeroViewModel = viewModel(
-        factory = Factory
-    )
+    heroViewModel: HeroViewModel
 ) {
     LaunchedEffect(heroViewModel.uiState) {
         heroViewModel.fetchHero(id = id)

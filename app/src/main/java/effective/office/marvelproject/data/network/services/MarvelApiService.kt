@@ -19,9 +19,3 @@ interface MarvelApiService {
         @Path("characterId") id: Int
     ): Either<ErrorResponse, MoshiHeroesResponse>
 }
-
-object MarvelApi {
-    val retrofitService: MarvelApiService by lazy {
-        retrofit.create(MarvelApiService::class.java)
-    }
-}

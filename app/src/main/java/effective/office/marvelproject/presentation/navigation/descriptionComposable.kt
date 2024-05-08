@@ -7,9 +7,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import effective.office.marvelproject.presentation.Hero.HeroScreen
+import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
 
 fun NavGraphBuilder.descriptionComposable(
     onBackClicked: () -> Unit,
+    heroViewModel: HeroViewModel
 ) {
     composable(
         route = MarvelScreen.Description.name + "{index}",
@@ -22,7 +24,8 @@ fun NavGraphBuilder.descriptionComposable(
         HeroScreen(
             id = index.arguments?.getInt("index")!!,
             modifier = Modifier.fillMaxSize(),
-            onBackClicked = onBackClicked
+            onBackClicked = onBackClicked,
+            heroViewModel = heroViewModel
         )
     }
 }
