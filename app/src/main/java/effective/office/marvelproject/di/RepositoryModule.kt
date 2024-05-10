@@ -4,10 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import effective.office.marvelproject.data.db.MarvelAppDatabase
-import effective.office.marvelproject.data.network.services.MarvelApiService
-import effective.office.marvelproject.domain.repositories.MarvelRepository
-import effective.office.marvelproject.domain.repositories.MarvelRepositoryImpl
+import effective.office.marvelproject.data.local.MarvelAppDatabase
+import effective.office.marvelproject.data.remote.services.MarvelApiService
+import effective.office.marvelproject.data.repository.MarvelRepositoryImpl
+import effective.office.marvelproject.domain.repository.MarvelRepository
 import javax.inject.Singleton
 
 @Module

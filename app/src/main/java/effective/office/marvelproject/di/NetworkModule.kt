@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import effective.office.marvelproject.BuildConfig
 import effective.office.marvelproject.data.network.EitherCallAdapterFactory
-import effective.office.marvelproject.data.network.services.MarvelApiService
+import effective.office.marvelproject.data.remote.services.MarvelApiService
 import effective.office.marvelproject.utils.Constant
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

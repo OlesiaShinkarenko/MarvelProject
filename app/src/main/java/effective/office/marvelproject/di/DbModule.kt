@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import effective.office.marvelproject.data.db.MarvelAppDatabase
-import effective.office.marvelproject.data.db.dao.CharacterDao
+import effective.office.marvelproject.data.local.CharacterDao
+import effective.office.marvelproject.data.local.MarvelAppDatabase
 import effective.office.marvelproject.utils.Constant
 import javax.inject.Singleton
 

@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import androidx.compose.material3.Surface
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
+import effective.office.marvelproject.presentation.hero.viewModel.HeroViewModel
 import effective.office.marvelproject.presentation.navigation.NavGraph
 import effective.office.marvelproject.ui.theme.AppTheme
 

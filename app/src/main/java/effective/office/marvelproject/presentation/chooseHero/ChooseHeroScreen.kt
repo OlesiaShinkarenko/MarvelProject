@@ -7,6 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import effective.office.marvelproject.presentation.chooseHero.components.ChooseHeroHeader
+import effective.office.marvelproject.presentation.chooseHero.components.ChooseHeroListUI
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
 import effective.office.marvelproject.ui.theme.Padding
 

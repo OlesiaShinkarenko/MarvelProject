@@ -3,8 +3,8 @@ package effective.office.marvelproject.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
 import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
+import effective.office.marvelproject.presentation.hero.viewModel.HeroViewModel
 
 @Composable
 fun NavGraph(

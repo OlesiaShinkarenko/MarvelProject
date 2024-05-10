@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import effective.office.marvelproject.domain.repositories.MarvelRepositoryImpl
+import effective.office.marvelproject.domain.repository.MarvelRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HeroesViewModel @Inject constructor(private val repository: MarvelRepositoryImpl) :
+class HeroesViewModel @Inject constructor(private val repository: MarvelRepository) :
     ViewModel() {
-    private val _uiState = MutableStateFlow(HeroesState.Empty)
+    private val _uiState = MutableStateFlow(HeroesUiState.Empty)
     val uiState = _uiState.asStateFlow()
 
     init {

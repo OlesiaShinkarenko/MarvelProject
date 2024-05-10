@@ -6,8 +6,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import effective.office.marvelproject.presentation.Hero.HeroScreen
-import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
+import effective.office.marvelproject.presentation.hero.HeroScreen
+import effective.office.marvelproject.presentation.hero.viewModel.HeroViewModel
 
 fun NavGraphBuilder.descriptionComposable(
     onBackClicked: () -> Unit,
