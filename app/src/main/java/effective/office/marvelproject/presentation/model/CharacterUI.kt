@@ -1,6 +1,6 @@
-package effective.office.marvelproject.model
+package effective.office.marvelproject.presentation.model
 
-data class HeroUI(
+data class CharacterUI(
     val id: Int,
     val logo: String,
     val name: String,

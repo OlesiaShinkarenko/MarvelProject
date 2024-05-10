@@ -15,6 +15,7 @@ object Dependencies {
         const val timber = "4.7.1"
         const val paging = "3.2.1"
         const val paging_jetpack = "3.3.0-alpha05"
+        const val room = "2.6.1"
     }
 
     object AndroidX {
@@ -59,5 +60,12 @@ object Dependencies {
     object Pager {
         const val paging_runtime = "androidx.paging:paging-runtime:${Version.paging}"
         const val paging = "androidx.paging:paging-compose:${Version.paging_jetpack}"
+    }
+
+    object Room {
+        const val room_runtime = "androidx.room:room-runtime:${Version.room}"
+        const val room_compiler = "androidx.room:room-compiler:${Version.room}"
+        const val room_paging = "androidx.room:room-paging:${Version.room}"
+        const val room = "androidx.room:room-ktx:${Version.room}"
     }
 }

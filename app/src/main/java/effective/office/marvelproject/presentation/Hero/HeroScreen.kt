@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -14,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -24,10 +27,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
-import effective.office.marvelproject.model.HeroUI
-import effective.office.marvelproject.presentation.Hero.viewModel.HeroUiState
 import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel
+import effective.office.marvelproject.presentation.Hero.viewModel.HeroViewModel.Companion.Factory
 import effective.office.marvelproject.presentation.components.LoadingIndicator
+import effective.office.marvelproject.presentation.model.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
 
@@ -36,30 +39,39 @@ fun HeroScreen(
     modifier: Modifier = Modifier,
     id: Int,
     onBackClicked: () -> Unit,
-    heroViewModel: HeroViewModel = viewModel()
+    heroViewModel: HeroViewModel = viewModel(
+        factory = Factory
+    )
 ) {
     LaunchedEffect(heroViewModel.uiState) {
         heroViewModel.fetchHero(id = id)
     }
 
-
+    val heroUiState by heroViewModel.uiState.collectAsState()
     val context = LocalContext.current
     Box(modifier = modifier) {
-        when (val heroUiState = heroViewModel.uiState.collectAsState().value) {
-            is HeroUiState.Success -> {
+        if (heroUiState.isLoading) {
+            LoadingIndicator(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentWidth(
+                        Alignment.CenterHorizontally
+                    )
+                    .wrapContentHeight(
+                        Alignment.CenterVertically
+                    )
+            )
+        } else {
+            heroUiState.hero?.let {
                 HeroContentScreen(
-                    hero = heroUiState.hero,
+                    hero = it
                 )
             }
-
-            is HeroUiState.Loading -> {
-                LoadingIndicator()
-            }
-
-            is HeroUiState.Error -> {
-                Toast.makeText(context, stringResource(id = heroUiState.error), Toast.LENGTH_SHORT)
+            heroUiState.errorMessage?.let {
+                Toast.makeText(context, stringResource(id = it), Toast.LENGTH_SHORT)
                     .show()
             }
+
         }
 
         IconButton(
@@ -75,7 +87,7 @@ fun HeroScreen(
 }
 
 @Composable
-fun HeroContentScreen(modifier: Modifier = Modifier, hero: HeroUI) {
+fun HeroContentScreen(modifier: Modifier = Modifier, hero: CharacterUI) {
     Box(modifier = modifier) {
         val painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)

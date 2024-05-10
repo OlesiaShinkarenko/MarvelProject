@@ -1,4 +1,4 @@
-package effective.office.marvelproject.network.either
+package effective.office.marvelproject.data.network.either
 
 sealed class Either<out F, out S> {
 

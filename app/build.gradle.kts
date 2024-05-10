@@ -104,5 +104,9 @@ dependencies {
     implementation(Dependencies.Timber.timber)
     implementation(Dependencies.Pager.paging)
     implementation(Dependencies.Pager.paging_runtime)
-    implementation ("com.github.skydoves:retrofit-adapters-paging:1.0.0")
+
+    kapt(Dependencies.Room.room_compiler)
+    implementation(Dependencies.Room.room)
+    implementation(Dependencies.Room.room_paging)
+    implementation(Dependencies.Room.room_runtime)
 }
