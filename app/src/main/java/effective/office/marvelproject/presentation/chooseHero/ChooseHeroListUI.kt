@@ -7,10 +7,8 @@ import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.SnapPositionInLayout
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -83,12 +81,9 @@ fun LazyListScope.loadState(loadState: CombinedLoadStates, context: Context) {
                 item {
                     LoadingIndicator(
                         Modifier
-                            .fillMaxSize()
-                            .wrapContentWidth(
-                                Alignment.CenterHorizontally
-                            )
-                            .wrapContentHeight(
-                                Alignment.CenterVertically
+                            .fillParentMaxSize()
+                            .wrapContentSize(
+                                Alignment.Center
                             )
                     )
                 }
@@ -98,26 +93,21 @@ fun LazyListScope.loadState(loadState: CombinedLoadStates, context: Context) {
                 item {
                     LoadingIndicator(
                         Modifier
-                            .fillMaxSize()
-                            .wrapContentWidth(
-                                Alignment.CenterHorizontally
-                            )
-                            .wrapContentHeight(
-                                Alignment.CenterVertically
+                            .fillParentMaxSize()
+                            .wrapContentSize(
+                                Alignment.Center
                             )
                     )
                 }
             }
-            loadState.prepend is LoadState.Loading ->{
+
+            loadState.prepend is LoadState.Loading -> {
                 item {
                     LoadingIndicator(
                         Modifier
-                            .fillMaxSize()
-                            .wrapContentWidth(
-                                Alignment.CenterHorizontally
-                            )
-                            .wrapContentHeight(
-                                Alignment.CenterVertically
+                            .fillParentMaxSize()
+                            .wrapContentSize(
+                                Alignment.Center
                             )
                     )
                 }
