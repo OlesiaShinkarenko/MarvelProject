@@ -8,11 +8,15 @@ import androidx.room.withTransaction
 import effective.office.marvelproject.data.db.MarvelAppDatabase
 import effective.office.marvelproject.data.mapper.toEntity
 import effective.office.marvelproject.data.mapper.toUI
-import effective.office.marvelproject.data.network.either.Either
+import effective.office.marvelproject.data.network.Either
 import effective.office.marvelproject.data.network.model.ErrorResponse
 import effective.office.marvelproject.data.network.paging.MarvelPagingSource
 import effective.office.marvelproject.data.network.services.MarvelApiService
 import effective.office.marvelproject.presentation.model.CharacterUI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,17 +37,17 @@ class MarvelRepositoryImpl @Inject constructor(
             config = PagingConfig(
                 PAGE_SIZE,
                 enablePlaceholders = true
-            )
+            ),
         ) {
             MarvelPagingSource(database, marvelApiService)
         }.flow.map { data ->
             data.map {
                 it.toUI()
             }
-        }
+        }.flowOn(Dispatchers.IO)
 
 
-    override suspend fun getCharacter(id: Int): Either<ErrorResponse, CharacterUI> {
+    override suspend fun getCharacter(id: Int): Flow<Either<ErrorResponse, CharacterUI>> = flow {
         val character = characterDao.getCharacter(id)
         if (character == null) {
             when (val remote = marvelApiService.getHero(id)) {
@@ -52,15 +56,15 @@ class MarvelRepositoryImpl @Inject constructor(
                     database.withTransaction {
                         characterDao.insert(data)
                     }
-                    return Either.Success(data.toUI())
+                    emit(Either.Success(data.toUI()))
                 }
 
                 is Either.Fail -> {
-                    return Either.Fail(remote.value)
+                    emit(Either.Fail(remote.value))
                 }
             }
         } else {
-            return Either.Success(character.toUI())
+            emit(Either.Success(character.toUI()))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }

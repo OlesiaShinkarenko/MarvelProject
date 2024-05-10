@@ -5,4 +5,13 @@ data class CharacterUI(
     val logo: String,
     val name: String,
     val description: String
-)
+) {
+    companion object {
+        val Empty = CharacterUI(
+            0,
+            "",
+            "",
+            ""
+        )
+    }
+}

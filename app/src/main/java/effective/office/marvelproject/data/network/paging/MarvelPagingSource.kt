@@ -6,10 +6,13 @@ import androidx.room.withTransaction
 import effective.office.marvelproject.data.db.MarvelAppDatabase
 import effective.office.marvelproject.data.db.models.CharacterEntity
 import effective.office.marvelproject.data.mapper.toEntity
-import effective.office.marvelproject.data.network.either.Either
+import effective.office.marvelproject.data.network.Either
 import effective.office.marvelproject.data.network.services.MarvelApiService
 
-class MarvelPagingSource(private val database: MarvelAppDatabase, private val marvelApiService: MarvelApiService) :
+class MarvelPagingSource(
+    private val database: MarvelAppDatabase,
+    private val marvelApiService: MarvelApiService
+) :
     PagingSource<Int, CharacterEntity>() {
     override fun getRefreshKey(state: PagingState<Int, CharacterEntity>) = state.anchorPosition
 

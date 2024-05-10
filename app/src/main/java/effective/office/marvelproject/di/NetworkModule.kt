@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import effective.office.marvelproject.BuildConfig
-import effective.office.marvelproject.data.network.either.EitherCallAdapterFactory
+import effective.office.marvelproject.data.network.EitherCallAdapterFactory
 import effective.office.marvelproject.data.network.services.MarvelApiService
 import effective.office.marvelproject.utils.Constant
 import okhttp3.Interceptor
@@ -54,15 +54,15 @@ class NetworkModule {
             }
         OkHttpClient().newBuilder()
             .addInterceptor(authInterceptor)
-            .readTimeout(60,TimeUnit.SECONDS)
-            .connectTimeout(60,TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
             .addNetworkInterceptor(logInterceptor)
             .build()
     } else {
         OkHttpClient().newBuilder()
             .addInterceptor(authInterceptor)
-            .readTimeout(60,TimeUnit.SECONDS)
-            .connectTimeout(60,TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
             .build()
     }
 

@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -39,14 +38,18 @@ fun HeroScreen(
     onBackClicked: () -> Unit,
     heroViewModel: HeroViewModel
 ) {
-    LaunchedEffect(heroViewModel.uiState) {
+    val heroUiState = heroViewModel.state.collectAsState()
+    val isLoading = heroUiState.value.isLoading
+
+
+    LaunchedEffect(heroViewModel.state) {
         heroViewModel.fetchHero(id = id)
     }
 
-    val heroUiState by heroViewModel.uiState.collectAsState()
+
     val context = LocalContext.current
     Box(modifier = modifier) {
-        if (heroUiState.isLoading) {
+        if (isLoading) {
             LoadingIndicator(
                 modifier = Modifier
                     .fillMaxSize()
@@ -57,19 +60,18 @@ fun HeroScreen(
                         Alignment.CenterVertically
                     )
             )
-        } else {
-            heroUiState.hero?.let {
-                HeroContentScreen(
-                    hero = it
-                )
-            }
-            heroUiState.errorMessage?.let {
-                Toast.makeText(context, stringResource(id = it), Toast.LENGTH_SHORT)
-                    .show()
-            }
-
         }
-
+        if (heroUiState.value.hero != CharacterUI.Empty) {
+            HeroContentScreen(
+                hero = heroUiState.value.hero
+            )
+        } else {
+            Toast.makeText(
+                context,
+                stringResource(id = heroUiState.value.error),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         IconButton(
             onClick = onBackClicked,
         ) {
@@ -83,7 +85,7 @@ fun HeroScreen(
 }
 
 @Composable
-fun HeroContentScreen(modifier: Modifier = Modifier, hero: CharacterUI) {
+private fun HeroContentScreen(modifier: Modifier = Modifier, hero: CharacterUI) {
     Box(modifier = modifier) {
         val painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)

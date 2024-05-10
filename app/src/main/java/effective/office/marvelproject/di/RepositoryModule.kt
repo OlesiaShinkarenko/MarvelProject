@@ -17,9 +17,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMarvelRepository(
-        marvelAppDatabase: MarvelAppDatabase ,
+        marvelAppDatabase: MarvelAppDatabase,
         marvelApiService: MarvelApiService,
-    ): MarvelRepository{
+    ): MarvelRepository {
         return MarvelRepositoryImpl(
             marvelAppDatabase,
             marvelApiService
