@@ -5,7 +5,7 @@ plugins {
     id(Plugins.Android.application)
     id(Plugins.Android.jetbrains)
     id(Plugins.Android.dagger)
-    id(Plugins.Android.kapt)
+    id(Plugins.Android.ksp)
 }
 
 android {
@@ -73,10 +73,6 @@ android {
         }
     }
 }
-kapt {
-    generateStubs = false
-    correctErrorTypes = true
-}
 
 dependencies {
 
@@ -101,17 +97,17 @@ dependencies {
     implementation(Dependencies.OkHttp.interceptor)
 
     implementation(Dependencies.Moshi.moshi)
-    kapt(Dependencies.Moshi.codegen)
+    ksp(Dependencies.Moshi.codegen)
 
     implementation(Dependencies.Timber.timber)
     implementation(Dependencies.Pager.paging)
     implementation(Dependencies.Pager.paging_runtime)
 
-    kapt(Dependencies.Room.room_compiler)
+    ksp(Dependencies.Room.room_compiler)
     implementation(Dependencies.Room.room)
     implementation(Dependencies.Room.room_paging)
     implementation(Dependencies.Room.room_runtime)
 
     implementation(Dependencies.Dagger.hilt)
-    kapt(Dependencies.Dagger.compiler)
+    ksp(Dependencies.Dagger.compiler)
 }

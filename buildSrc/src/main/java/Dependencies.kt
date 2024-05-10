@@ -10,7 +10,7 @@ object Dependencies {
         const val material3 = "1.2.0"
         const val view_model = "2.6.1"
         const val retrofit = "2.9.0"
-        const val moshi = "1.15.0"
+        const val moshi = "1.15.1"
         const val okhttp = "4.12.0"
         const val timber = "4.7.1"
         const val paging = "3.2.1"
