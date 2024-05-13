@@ -1,4 +1,4 @@
-package effective.office.marvelproject.domain.repository
+package effective.office.marvelproject.data.repository
 
 import androidx.paging.PagingData
 import effective.office.marvelproject.data.network.Either

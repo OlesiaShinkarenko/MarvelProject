@@ -9,16 +9,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import effective.office.marvelproject.R
 import effective.office.marvelproject.presentation.chooseHero.ChooseHeroScreen
-import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
 
 
 fun NavGraphBuilder.chooseComposable(
     onCardClicked: (Int) -> Unit,
-    heroesViewModel: HeroesViewModel
 ) {
     composable(route = MarvelScreen.Start.name) {
         ChooseHeroScreen(
-            heroesViewModel = heroesViewModel,
             modifier = Modifier
                 .fillMaxSize()
                 .paint(

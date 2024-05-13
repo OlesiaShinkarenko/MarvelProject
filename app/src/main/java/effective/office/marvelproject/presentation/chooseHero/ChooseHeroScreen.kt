@@ -6,17 +6,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import effective.office.marvelproject.presentation.chooseHero.components.ChooseHeroHeader
 import effective.office.marvelproject.presentation.chooseHero.components.ChooseHeroListUI
-import effective.office.marvelproject.presentation.chooseHero.viewModel.HeroesViewModel
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable
 fun ChooseHeroScreen(
     modifier: Modifier = Modifier,
     onCardHeroClicked: (Int) -> Unit,
-    heroesViewModel: HeroesViewModel
+    heroesViewModel: HeroesViewModel = hiltViewModel()
 ) {
     val heroesUiState = heroesViewModel.uiState.collectAsState()
     val heroes = heroesUiState.value.heroes.collectAsLazyPagingItems()

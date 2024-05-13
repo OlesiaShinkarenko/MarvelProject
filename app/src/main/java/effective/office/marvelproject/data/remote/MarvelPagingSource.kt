@@ -4,10 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.room.withTransaction
 import effective.office.marvelproject.data.local.MarvelAppDatabase
+import effective.office.marvelproject.data.local.model.CharacterEntity
 import effective.office.marvelproject.data.network.Either
 import effective.office.marvelproject.data.remote.model.mappers.toEntity
 import effective.office.marvelproject.data.remote.services.MarvelApiService
-import effective.office.marvelproject.domain.model.CharacterEntity
 
 class MarvelPagingSource(
     private val database: MarvelAppDatabase,

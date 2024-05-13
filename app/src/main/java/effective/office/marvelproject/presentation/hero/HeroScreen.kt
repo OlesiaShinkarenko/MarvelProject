@@ -21,12 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.R
 import effective.office.marvelproject.presentation.components.LoadingIndicator
-import effective.office.marvelproject.presentation.hero.viewModel.HeroViewModel
 import effective.office.marvelproject.presentation.models.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
@@ -36,7 +36,7 @@ fun HeroScreen(
     modifier: Modifier = Modifier,
     id: Int,
     onBackClicked: () -> Unit,
-    heroViewModel: HeroViewModel
+    heroViewModel: HeroViewModel = hiltViewModel()
 ) {
     val heroUiState = heroViewModel.state.collectAsState()
     val isLoading = heroUiState.value.isLoading
@@ -61,17 +61,19 @@ fun HeroScreen(
                     )
             )
         }
-        if (heroUiState.value.hero != CharacterUI.Empty) {
+        heroUiState.value.hero?.let {
             HeroContentScreen(
-                hero = heroUiState.value.hero
+                hero = it
             )
-        } else {
+        }
+        heroUiState.value.error?.let {
             Toast.makeText(
                 context,
-                stringResource(id = heroUiState.value.error),
+                stringResource(id = it),
                 Toast.LENGTH_SHORT
             ).show()
         }
+
         IconButton(
             onClick = onBackClicked,
         ) {

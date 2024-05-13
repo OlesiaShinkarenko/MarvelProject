@@ -1,10 +1,10 @@
-package effective.office.marvelproject.presentation.hero.viewModel
+package effective.office.marvelproject.presentation.hero
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import effective.office.marvelproject.data.network.Either
-import effective.office.marvelproject.domain.repository.MarvelRepository
+import effective.office.marvelproject.data.repository.MarvelRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

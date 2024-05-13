@@ -109,5 +109,6 @@ dependencies {
     implementation(Dependencies.Room.room_runtime)
 
     implementation(Dependencies.Dagger.hilt)
+    implementation(Dependencies.Dagger.navigation)
     ksp(Dependencies.Dagger.compiler)
 }

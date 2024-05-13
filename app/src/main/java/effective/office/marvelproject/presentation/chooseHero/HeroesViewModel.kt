@@ -1,11 +1,10 @@
-package effective.office.marvelproject.presentation.chooseHero.viewModel
+package effective.office.marvelproject.presentation.chooseHero
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import effective.office.marvelproject.domain.repository.MarvelRepository
+import effective.office.marvelproject.data.repository.MarvelRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -22,7 +21,6 @@ class HeroesViewModel @Inject constructor(private val repository: MarvelReposito
         fetchHeroes()
     }
 
-    @OptIn(ExperimentalPagingApi::class)
     private fun fetchHeroes() {
         viewModelScope.launch {
             val heroes = repository.getCharacterPage()

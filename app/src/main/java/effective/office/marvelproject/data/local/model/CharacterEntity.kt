@@ -1,4 +1,4 @@
-package effective.office.marvelproject.domain.model
+package effective.office.marvelproject.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

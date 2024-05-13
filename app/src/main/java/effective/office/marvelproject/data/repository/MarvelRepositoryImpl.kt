@@ -11,7 +11,6 @@ import effective.office.marvelproject.data.remote.MarvelPagingSource
 import effective.office.marvelproject.data.remote.model.ErrorResponse
 import effective.office.marvelproject.data.remote.model.mappers.toEntity
 import effective.office.marvelproject.data.remote.services.MarvelApiService
-import effective.office.marvelproject.domain.repository.MarvelRepository
 import effective.office.marvelproject.presentation.models.CharacterUI
 import effective.office.marvelproject.presentation.models.mappers.toUI
 import kotlinx.coroutines.Dispatchers
