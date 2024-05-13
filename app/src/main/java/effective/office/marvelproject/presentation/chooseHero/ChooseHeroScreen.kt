@@ -27,6 +27,7 @@ fun ChooseHeroScreen(
             modifier = Modifier.fillMaxWidth()
         )
         ChooseHeroListUI(
+            error = heroesUiState.value.error,
             listHero = heroes,
             modifier = Modifier
                 .fillMaxWidth()

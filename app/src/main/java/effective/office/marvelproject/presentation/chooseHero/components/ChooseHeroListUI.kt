@@ -35,7 +35,8 @@ import effective.office.marvelproject.ui.theme.Size
 fun ChooseHeroListUI(
     modifier: Modifier = Modifier,
     listHero: LazyPagingItems<CharacterUI>,
-    onCardHeroClicked: (Int) -> Unit
+    onCardHeroClicked: (Int) -> Unit,
+    error: Int?
 ) {
     val state = rememberLazyListState()
     val snappingLayout = remember(state) {
@@ -48,6 +49,10 @@ fun ChooseHeroListUI(
     val context = LocalContext.current
 
     val flingBehavior = rememberSnapFlingBehavior(snappingLayout)
+
+    error?.let {
+        ShowToast(context, it)
+    }
 
     LazyRow(
         contentPadding = Padding.horizontal_30,

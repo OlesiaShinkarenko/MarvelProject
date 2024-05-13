@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
+import effective.office.marvelproject.R
 import effective.office.marvelproject.data.repository.MarvelRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,14 +24,22 @@ class HeroesViewModel @Inject constructor(private val repository: MarvelReposito
 
     private fun fetchHeroes() {
         viewModelScope.launch {
-            val heroes = repository.getCharacterPage()
-                .cachedIn(viewModelScope)
-
-            _uiState.update { state ->
-                state.copy(
-                    isLoading = false,
-                    heroes = heroes
-                )
+            try {
+                val heroes = repository.getCharacterPage()
+                    .cachedIn(viewModelScope)
+                _uiState.update { state ->
+                    state.copy(
+                        isLoading = false,
+                        heroes = heroes
+                    )
+                }
+            } catch (e: Exception) {
+                _uiState.update { state ->
+                    state.copy(
+                        isLoading = false,
+                        error = e.message?.toInt() ?: R.string.unknown_error
+                    )
+                }
             }
         }
     }
