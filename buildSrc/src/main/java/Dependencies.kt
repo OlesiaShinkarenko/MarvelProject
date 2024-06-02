@@ -18,6 +18,7 @@ object Dependencies {
         const val room = "2.6.1"
         const val dagger = "2.51.1"
         const val dagger_navigation = "1.0.0"
+        const val firebase = "33.1.0"
     }
 
     object AndroidX {
@@ -75,5 +76,11 @@ object Dependencies {
         const val hilt = "com.google.dagger:hilt-android:${Version.dagger}"
         const val compiler = "com.google.dagger:hilt-compiler:${Version.dagger}"
         const val navigation = "androidx.hilt:hilt-navigation-compose:${Version.dagger_navigation}"
+    }
+
+    object Firebase {
+        const val platform = "com.google.firebase:firebase-bom:${Version.firebase}"
+        const val messaging = "com.google.firebase:firebase-messaging"
+        const val analytics = "com.google.firebase:firebase-analytics"
     }
 }

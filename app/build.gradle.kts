@@ -6,6 +6,7 @@ plugins {
     id(Plugins.Android.jetbrains)
     id(Plugins.Android.dagger)
     id(Plugins.Android.ksp)
+    id(Plugins.Android.services)
 }
 
 android {
@@ -111,4 +112,8 @@ dependencies {
     implementation(Dependencies.Dagger.hilt)
     implementation(Dependencies.Dagger.navigation)
     ksp(Dependencies.Dagger.compiler)
+
+    implementation(platform(Dependencies.Firebase.platform))
+    implementation(Dependencies.Firebase.analytics)
+    implementation(Dependencies.Firebase.messaging)
 }
