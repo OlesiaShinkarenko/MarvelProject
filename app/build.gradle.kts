@@ -116,4 +116,6 @@ dependencies {
     implementation(platform(Dependencies.Firebase.platform))
     implementation(Dependencies.Firebase.analytics)
     implementation(Dependencies.Firebase.messaging)
+
+    implementation(Dependencies.Services.base)
 }

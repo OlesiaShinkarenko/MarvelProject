@@ -19,6 +19,7 @@ object Dependencies {
         const val dagger = "2.51.1"
         const val dagger_navigation = "1.0.0"
         const val firebase = "33.1.0"
+        const val services = "18.5.0"
     }
 
     object AndroidX {
@@ -82,5 +83,8 @@ object Dependencies {
         const val platform = "com.google.firebase:firebase-bom:${Version.firebase}"
         const val messaging = "com.google.firebase:firebase-messaging"
         const val analytics = "com.google.firebase:firebase-analytics"
+    }
+    object Services {
+        const val base = "com.google.android.gms:play-services-base:${Version.services}"
     }
 }
