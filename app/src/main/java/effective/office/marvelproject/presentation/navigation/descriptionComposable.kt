@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import effective.office.marvelproject.presentation.hero.HeroScreen
+import effective.office.marvelproject.utils.Constants.Companion.MY_URI
 
 fun NavGraphBuilder.descriptionComposable(
     onBackClicked: () -> Unit,

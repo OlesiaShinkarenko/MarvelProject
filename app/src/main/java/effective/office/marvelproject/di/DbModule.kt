@@ -9,7 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import effective.office.marvelproject.data.local.CharacterDao
 import effective.office.marvelproject.data.local.MarvelAppDatabase
-import effective.office.marvelproject.utils.Constant
+import effective.office.marvelproject.utils.Constants
 import javax.inject.Singleton
 
 @Module
@@ -19,7 +19,7 @@ class DbModule {
     @Provides
     @Singleton
     internal fun provideMarvelDb(@ApplicationContext context: Context): MarvelAppDatabase {
-        return Room.databaseBuilder(context, MarvelAppDatabase::class.java, Constant.DB_NAME)
+        return Room.databaseBuilder(context, MarvelAppDatabase::class.java, Constants.DB_NAME)
             .fallbackToDestructiveMigration()
             .build()
     }

@@ -16,8 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import effective.office.marvelproject.MainActivity
 import effective.office.marvelproject.R
 import effective.office.marvelproject.data.local.MarvelAppDatabase
-import effective.office.marvelproject.presentation.navigation.MY_URI
-import effective.office.marvelproject.utils.Constant
+import effective.office.marvelproject.utils.Constants
+import effective.office.marvelproject.utils.Constants.Companion.MY_URI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,11 +50,11 @@ class PushService : FirebaseMessagingService() {
             val clickPendingIntent: PendingIntent =
                 TaskStackBuilder.create(applicationContext).run {
                     addNextIntentWithParentStack(clickIntent)
-                    getPendingIntent(1, flag)
+                    getPendingIntent(Constants.REQUEST_CODE, flag)
                 }
             val notificationBuilder =
-                NotificationCompat.Builder(applicationContext, Constant.CHANNEL_ID)
-                    .setContentTitle(Constant.CHANNEL_ID)
+                NotificationCompat.Builder(applicationContext, Constants.CHANNEL_ID)
+                    .setContentTitle(Constants.CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
                     .setAutoCancel(true)
                     .setContentText(randomId.toString())
@@ -65,13 +65,13 @@ class PushService : FirebaseMessagingService() {
             val notificationManager = NotificationManagerCompat.from(applicationContext)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
-                    Constant.CHANNEL_ID,
-                    Constant.CHANNEL_NAME,
+                    Constants.CHANNEL_ID,
+                    Constants.CHANNEL_NAME,
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
                 notificationManager.createNotificationChannel(channel)
             }
-            notificationManager.notify(1, notificationBuilder.build())
+            notificationManager.notify(Constants.NOTIFICATION_ID, notificationBuilder.build())
         }
     }
 }
