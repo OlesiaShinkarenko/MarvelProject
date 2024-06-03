@@ -20,6 +20,7 @@ object Dependencies {
         const val dagger_navigation = "1.0.0"
         const val firebase = "33.1.0"
         const val services = "18.5.0"
+        const val permission = "0.33.1-alpha"
     }
 
     object AndroidX {
@@ -84,7 +85,13 @@ object Dependencies {
         const val messaging = "com.google.firebase:firebase-messaging"
         const val analytics = "com.google.firebase:firebase-analytics"
     }
+
     object Services {
         const val base = "com.google.android.gms:play-services-base:${Version.services}"
+    }
+
+    object Permissions {
+        const val permissions =
+            "com.google.accompanist:accompanist-permissions:${Version.permission}"
     }
 }

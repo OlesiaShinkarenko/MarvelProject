@@ -118,4 +118,5 @@ dependencies {
     implementation(Dependencies.Firebase.messaging)
 
     implementation(Dependencies.Services.base)
+    implementation(Dependencies.Permissions.permissions)
 }

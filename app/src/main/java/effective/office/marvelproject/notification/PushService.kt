@@ -1,10 +1,12 @@
 package effective.office.marvelproject.notification
 
-import android.annotation.SuppressLint
+import android.Manifest
 import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.net.toUri
@@ -30,7 +32,6 @@ class PushService : FirebaseMessagingService() {
     @Inject
     lateinit var notificationManager: NotificationManagerCompat
 
-    @SuppressLint("MissingPermission")
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
         val flag =
@@ -62,8 +63,13 @@ class PushService : FirebaseMessagingService() {
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
                     .setContentIntent(clickPendingIntent)
-
-            notificationManager.notify(Constants.NOTIFICATION_ID, notificationBuilder.build())
+            if (Build.VERSION.SDK_INT < 33 || (ActivityCompat.checkSelfPermission(
+                    applicationContext,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED)
+            ) {
+                notificationManager.notify(Constants.NOTIFICATION_ID, notificationBuilder.build())
+            }
         }
     }
 }
