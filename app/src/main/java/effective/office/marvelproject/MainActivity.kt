@@ -4,14 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+import effective.office.marvelproject.notification.checkGooglePlayServices
 import effective.office.marvelproject.presentation.navigation.NavGraph
 import effective.office.marvelproject.ui.theme.AppTheme
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (checkGooglePlayServices(this)) {
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(
+                OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    val token = task.result
+                    Timber.tag("TOKEN").d(token)
+                }
+            )
+        }
         setContent {
             AppTheme {
                 Surface(

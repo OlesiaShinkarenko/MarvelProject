@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 
+const val MY_URI = "https://stevdza-san.com"
+const val MY_ARG = 0
+
 @Composable
 fun NavGraph() {
     val navController = rememberNavController()

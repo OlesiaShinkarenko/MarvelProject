@@ -13,7 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HeroesViewModel @Inject constructor(private val repository: MarvelRepository) :
+class HeroesViewModel @Inject constructor(
+    private val repository: MarvelRepository,
+) :
     ViewModel() {
     private val _uiState = MutableStateFlow(HeroesUiState.Empty)
     val uiState = _uiState.asStateFlow()

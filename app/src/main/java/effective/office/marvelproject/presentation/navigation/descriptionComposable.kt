@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import effective.office.marvelproject.presentation.hero.HeroScreen
 
 fun NavGraphBuilder.descriptionComposable(
@@ -17,7 +18,8 @@ fun NavGraphBuilder.descriptionComposable(
             navArgument(name = "index") {
                 type = NavType.IntType
             }
-        )
+        ),
+        deepLinks = listOf(navDeepLink { uriPattern = "$MY_URI/index={index}" })
     ) { index ->
         HeroScreen(
             id = index.arguments?.getInt("index")!!,
