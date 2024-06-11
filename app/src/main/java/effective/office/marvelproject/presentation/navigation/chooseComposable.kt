@@ -12,7 +12,7 @@ import effective.office.marvelproject.presentation.chooseHero.ChooseHeroScreen
 
 
 fun NavGraphBuilder.chooseComposable(
-    onCardClicked: (Int) -> Unit
+    onCardClicked: (Int) -> Unit,
 ) {
     composable(route = MarvelScreen.Start.name) {
         ChooseHeroScreen(

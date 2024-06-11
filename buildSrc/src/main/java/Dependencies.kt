@@ -10,12 +10,14 @@ object Dependencies {
         const val material3 = "1.2.0"
         const val view_model = "2.6.1"
         const val retrofit = "2.9.0"
-        const val moshi = "1.15.0"
+        const val moshi = "1.15.1"
         const val okhttp = "4.12.0"
         const val timber = "4.7.1"
         const val paging = "3.2.1"
         const val paging_jetpack = "3.3.0-alpha05"
         const val room = "2.6.1"
+        const val dagger = "2.51.1"
+        const val dagger_navigation = "1.0.0"
     }
 
     object AndroidX {
@@ -67,5 +69,11 @@ object Dependencies {
         const val room_compiler = "androidx.room:room-compiler:${Version.room}"
         const val room_paging = "androidx.room:room-paging:${Version.room}"
         const val room = "androidx.room:room-ktx:${Version.room}"
+    }
+
+    object Dagger {
+        const val hilt = "com.google.dagger:hilt-android:${Version.dagger}"
+        const val compiler = "com.google.dagger:hilt-compiler:${Version.dagger}"
+        const val navigation = "androidx.hilt:hilt-navigation-compose:${Version.dagger_navigation}"
     }
 }

@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
-import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import effective.office.marvelproject.presentation.navigation.NavGraph
 import effective.office.marvelproject.ui.theme.AppTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +17,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     color = AppTheme.colors.backgroundColor
                 ) {
-                    val navController = rememberNavController()
-                    NavGraph(navController = navController)
+                    NavGraph()
                 }
             }
         }

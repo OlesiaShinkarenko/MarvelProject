@@ -4,7 +4,8 @@ import java.util.Properties
 plugins {
     id(Plugins.Android.application)
     id(Plugins.Android.jetbrains)
-    id(Plugins.Android.kapt)
+    id(Plugins.Android.dagger)
+    id(Plugins.Android.ksp)
 }
 
 android {
@@ -72,9 +73,6 @@ android {
         }
     }
 }
-kapt {
-    generateStubs = false
-}
 
 dependencies {
 
@@ -99,14 +97,18 @@ dependencies {
     implementation(Dependencies.OkHttp.interceptor)
 
     implementation(Dependencies.Moshi.moshi)
-    kapt(Dependencies.Moshi.codegen)
+    ksp(Dependencies.Moshi.codegen)
 
     implementation(Dependencies.Timber.timber)
     implementation(Dependencies.Pager.paging)
     implementation(Dependencies.Pager.paging_runtime)
 
-    kapt(Dependencies.Room.room_compiler)
+    ksp(Dependencies.Room.room_compiler)
     implementation(Dependencies.Room.room)
     implementation(Dependencies.Room.room_paging)
     implementation(Dependencies.Room.room_runtime)
+
+    implementation(Dependencies.Dagger.hilt)
+    implementation(Dependencies.Dagger.navigation)
+    ksp(Dependencies.Dagger.compiler)
 }
