@@ -3,8 +3,10 @@ package effective.office.marvelproject.notification
 import android.Manifest
 import android.app.PendingIntent
 import android.app.TaskStackBuilder
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -43,33 +45,70 @@ class PushService : FirebaseMessagingService() {
         CoroutineScope(Dispatchers.IO).launch {
             val randomId = marvelAppDatabase.characterDao().getRandomId()
 
-            val clickIntent = Intent(
-                Intent.ACTION_VIEW,
-                "$MY_URI/index=${randomId}".toUri(),
+            val clickIntent = createIntent(
                 applicationContext,
-                MainActivity::class.java
+                "$MY_URI/index=${randomId}".toUri()
             )
+
             val clickPendingIntent: PendingIntent =
-                TaskStackBuilder.create(applicationContext).run {
-                    addNextIntentWithParentStack(clickIntent)
-                    getPendingIntent(Constants.REQUEST_CODE, flag)
-                }
-            val notificationBuilder =
-                NotificationCompat.Builder(applicationContext, Constants.CHANNEL_ID)
-                    .setContentTitle(Constants.CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setAutoCancel(true)
-                    .setContentText(randomId.toString())
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
-                    .setContentIntent(clickPendingIntent)
-            if (Build.VERSION.SDK_INT < 33 || (ActivityCompat.checkSelfPermission(
-                    applicationContext,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED)
-            ) {
-                notificationManager.notify(Constants.NOTIFICATION_ID, notificationBuilder.build())
+                createPendingIntent(applicationContext, clickIntent, flag, Constants.REQUEST_CODE)
+
+            val notificationBuilder = notificationBuilder(
+                applicationContext,
+                randomId.toString(),
+                Constants.CHANNEL_ID,
+                clickPendingIntent
+            )
+
+            if (checkPermission(applicationContext)) {
+                notificationManager.notify(
+                    Constants.NOTIFICATION_ID,
+                    notificationBuilder.build()
+                )
             }
         }
+    }
+
+    private fun checkPermission(context: Context): Boolean {
+        return Build.VERSION.SDK_INT < 33 || (ActivityCompat.checkSelfPermission(
+            context,
+            Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    private fun createIntent(context: Context, uri: Uri): Intent {
+        return Intent(
+            Intent.ACTION_VIEW,
+            uri,
+            context,
+            MainActivity::class.java
+        )
+    }
+
+    private fun createPendingIntent(
+        context: Context,
+        clickIntent: Intent,
+        flag: Int,
+        requestCode: Int
+    ) =
+        TaskStackBuilder.create(context).run {
+            addNextIntentWithParentStack(clickIntent)
+            getPendingIntent(requestCode, flag)
+        }
+
+    private fun notificationBuilder(
+        context: Context,
+        content: String,
+        channelId: String,
+        intent: PendingIntent
+    ): NotificationCompat.Builder {
+        return NotificationCompat.Builder(context, channelId)
+            .setContentTitle(channelId)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setAutoCancel(true)
+            .setContentText(content)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
+            .setContentIntent(intent)
     }
 }
