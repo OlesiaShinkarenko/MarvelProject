@@ -18,6 +18,9 @@ object Dependencies {
         const val room = "2.6.1"
         const val dagger = "2.51.1"
         const val dagger_navigation = "1.0.0"
+        const val firebase = "33.1.0"
+        const val services = "18.5.0"
+        const val permission = "0.33.1-alpha"
     }
 
     object AndroidX {
@@ -75,5 +78,20 @@ object Dependencies {
         const val hilt = "com.google.dagger:hilt-android:${Version.dagger}"
         const val compiler = "com.google.dagger:hilt-compiler:${Version.dagger}"
         const val navigation = "androidx.hilt:hilt-navigation-compose:${Version.dagger_navigation}"
+    }
+
+    object Firebase {
+        const val platform = "com.google.firebase:firebase-bom:${Version.firebase}"
+        const val messaging = "com.google.firebase:firebase-messaging"
+        const val analytics = "com.google.firebase:firebase-analytics"
+    }
+
+    object Services {
+        const val base = "com.google.android.gms:play-services-base:${Version.services}"
+    }
+
+    object Permissions {
+        const val permissions =
+            "com.google.accompanist:accompanist-permissions:${Version.permission}"
     }
 }

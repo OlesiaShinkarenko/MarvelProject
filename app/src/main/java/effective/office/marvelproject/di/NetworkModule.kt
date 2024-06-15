@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import effective.office.marvelproject.BuildConfig
 import effective.office.marvelproject.data.network.EitherCallAdapterFactory
 import effective.office.marvelproject.data.remote.services.MarvelApiService
-import effective.office.marvelproject.utils.Constant
+import effective.office.marvelproject.utils.Constants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,14 +23,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
     @Provides
-    fun provideBaseUrl() = Constant.BASE_URL
+    fun provideBaseUrl() = Constants.BASE_URL
 
     private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url
             .newBuilder()
-            .addQueryParameter("apikey", Constant.API_KEY)
-            .addQueryParameter("ts", Constant.ts)
-            .addQueryParameter("hash", Constant.hash())
+            .addQueryParameter("apikey", Constants.API_KEY)
+            .addQueryParameter("ts", Constants.ts)
+            .addQueryParameter("hash", Constants.hash())
             .build()
 
         val newRequest = chain.request()

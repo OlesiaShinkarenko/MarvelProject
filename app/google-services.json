@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "443086192024",
+    "project_id": "marvel-project-eed46",
+    "storage_bucket": "marvel-project-eed46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443086192024:android:d7dcaa9a4f6c6ee94f7fed",
+        "android_client_info": {
+          "package_name": "effective.office.marvelproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXk3bsrZLH9uWMabaq085oUblfW9szhL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

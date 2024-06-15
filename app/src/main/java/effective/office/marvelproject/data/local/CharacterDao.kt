@@ -18,6 +18,9 @@ interface CharacterDao {
     @Query("SELECT * FROM  characters")
     fun getCharacters(): Flow<List<CharacterEntity>>
 
+    @Query("SELECT character_id FROM characters order by random() limit 1")
+    fun getRandomId(): Int
+
     @Query("SELECT * FROM characters where character_id = :id")
     suspend fun getCharacter(id: Int): CharacterEntity?
 

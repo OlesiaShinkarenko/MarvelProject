@@ -4,7 +4,7 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import java.sql.Timestamp
 
-class Constant {
+class Constants {
     companion object {
         const val DB_NAME = "marvel_app"
         const val API_KEY = "0942deebe7c90aafc2a7ec87d85c34dd"
@@ -17,5 +17,11 @@ class Constant {
             val md = MessageDigest.getInstance("MD5")
             return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
         }
+
+        const val CHANNEL_ID = "id_heroes"
+        const val CHANNEL_NAME = "hero_channel"
+        const val MY_URI = "https://app.com"
+        const val NOTIFICATION_ID = 1
+        const val REQUEST_CODE = 1
     }
 }
