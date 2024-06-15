@@ -10,6 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import effective.office.marvelproject.presentation.chooseHero.components.ChooseHeroHeader
 import effective.office.marvelproject.presentation.chooseHero.components.ChooseHeroListUI
+import effective.office.marvelproject.presentation.chooseHero.models.HeroesViewModel
 import effective.office.marvelproject.ui.theme.Padding
 
 @Composable

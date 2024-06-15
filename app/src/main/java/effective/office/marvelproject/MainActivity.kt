@@ -7,11 +7,8 @@ import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
@@ -49,9 +46,7 @@ class MainActivity : ComponentActivity() {
                     LaunchedEffect(key1 = Unit) {
                         permissionState.launchPermissionRequest()
                     }
-                    Box(Modifier.systemBarsPadding()) {
-                        NavGraph()
-                    }
+                    NavGraph()
                 }
             }
         }

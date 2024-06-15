@@ -23,6 +23,8 @@ import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.presentation.hero.components.HeroScreenTopAppBar
+import effective.office.marvelproject.presentation.hero.models.HeroEvent
+import effective.office.marvelproject.presentation.hero.models.HeroViewModel
 import effective.office.marvelproject.presentation.models.CharacterUI
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
@@ -39,7 +41,9 @@ fun HeroScreen(
     val context = LocalContext.current
 
     LaunchedEffect(heroViewModel.state) {
-        heroViewModel.fetchHero(id = id)
+        heroViewModel.sendEvent(
+            HeroEvent.FetchHero(id)
+        )
     }
     if (isLoading) {
         LoadingIndicator(
