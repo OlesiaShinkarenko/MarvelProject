@@ -22,6 +22,7 @@ object Dependencies {
         const val services = "18.5.0"
         const val permission = "0.33.1-alpha"
         const val accompanist = "0.32.0"
+        const val window_size = "1.1.0"
     }
 
     object AndroidX {
@@ -38,6 +39,8 @@ object Dependencies {
         const val navigation = "androidx.navigation:navigation-compose:${Version.navigation}"
         const val view_model =
             "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.view_model}"
+        const val window_size =
+            "androidx.compose.material3:material3-window-size-class:${Version.window_size}"
     }
 
     object Coil {

@@ -123,4 +123,5 @@ dependencies {
     implementation(Dependencies.Permissions.permissions)
 
     implementation(Dependencies.Accompanist.systemUiController)
+    implementation(Dependencies.AndroidX.window_size)
 }

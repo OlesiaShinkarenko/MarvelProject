@@ -3,7 +3,6 @@ package effective.office.marvelproject.presentation.chooseHero.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -48,7 +47,7 @@ fun HeroElement(
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
                 painter = painter,
-                modifier = Modifier.fillMaxHeight(),
+                modifier = Modifier.fillMaxSize(),
                 contentDescription = item.name,
                 contentScale = ContentScale.Crop,
             )

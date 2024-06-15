@@ -33,11 +33,10 @@ val LocalCustomTypography = staticCompositionLocalOf {
         bold = AppTheme.TextStyle.Bold
     )
 }
-
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colors = if (darkTheme) {
         darkColors
@@ -46,11 +45,12 @@ fun AppTheme(
     }
     val typography = CustomTypography(
         medium = AppTheme.TextStyle.Medium,
+
+        
         bold = AppTheme.TextStyle.Bold
     )
 
     ApplySystemBarColors(darkTheme)
-
     CompositionLocalProvider(
         LocalCustomColors provides colors,
         LocalCustomTypography provides typography,
