@@ -17,8 +17,6 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.paging.CombinedLoadStates
@@ -27,7 +25,6 @@ import androidx.paging.compose.LazyPagingItems
 import effective.office.marvelproject.presentation.components.LoadingIndicator
 import effective.office.marvelproject.presentation.models.CharacterUI
 import effective.office.marvelproject.ui.theme.Padding
-import effective.office.marvelproject.ui.theme.Shape
 import effective.office.marvelproject.ui.theme.Size
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -66,9 +63,7 @@ fun ChooseHeroListUI(
                 listHero[it]?.let { it1 ->
                     HeroElement(
                         modifier = Modifier
-                            .width(Size.size330)
-                            .shadow(elevation = Size.size16, shape = Shape.shape10)
-                            .clip(shape = Shape.shape10),
+                            .width(Size.size330),
                         item = it1,
                         onCardHeroClicked = onCardHeroClicked
                     )
