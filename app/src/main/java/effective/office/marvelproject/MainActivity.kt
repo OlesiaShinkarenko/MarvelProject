@@ -1,6 +1,9 @@
 package effective.office.marvelproject
 
 import android.Manifest
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -49,5 +52,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(object : ContextWrapper(base) {
+            override fun getApplicationInfo(): ApplicationInfo {
+                val origin = super.getApplicationInfo()
+                origin.flags = origin.flags or ApplicationInfo.FLAG_SUPPORTS_RTL
+                return origin
+            }
+        })
     }
 }
