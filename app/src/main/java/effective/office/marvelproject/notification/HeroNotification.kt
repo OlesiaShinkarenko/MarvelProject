@@ -22,7 +22,7 @@ class HeroNotification(
     private val marvelAppDatabase: MarvelAppDatabase,
     private val notificationManager: NotificationManagerCompat
 ) {
-    fun sendNotification(){
+    fun sendNotification() {
         val randomId = marvelAppDatabase.characterDao().getRandomId()
 
         val clickIntent = createIntent(
@@ -52,6 +52,7 @@ class HeroNotification(
             )
         }
     }
+
     private fun checkPermission(context: Context): Boolean {
         return Build.VERSION.SDK_INT < 33 || (ActivityCompat.checkSelfPermission(
             context,

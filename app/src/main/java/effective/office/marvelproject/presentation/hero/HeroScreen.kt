@@ -1,6 +1,5 @@
 package effective.office.marvelproject.presentation.hero
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,12 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import effective.office.marvelproject.presentation.components.LoadingIndicator
+import effective.office.marvelproject.presentation.components.ShowToast
 import effective.office.marvelproject.presentation.hero.components.HeroScreenTopAppBar
 import effective.office.marvelproject.presentation.hero.models.HeroEvent
 import effective.office.marvelproject.presentation.hero.models.HeroViewModel
@@ -64,11 +63,7 @@ fun HeroScreen(
         )
     }
     heroUiState.value.error?.let {
-        Toast.makeText(
-            context,
-            stringResource(id = it),
-            Toast.LENGTH_SHORT
-        ).show()
+        ShowToast(context = context, error = it)
     }
     HeroScreenTopAppBar(
         onBackClicked

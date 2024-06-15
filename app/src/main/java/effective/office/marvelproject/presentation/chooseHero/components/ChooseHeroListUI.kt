@@ -1,7 +1,6 @@
 package effective.office.marvelproject.presentation.chooseHero.components
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.SnapPositionInLayout
@@ -18,11 +17,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import effective.office.marvelproject.presentation.components.LoadingIndicator
+import effective.office.marvelproject.presentation.components.ShowToast
 import effective.office.marvelproject.presentation.models.CharacterUI
 import effective.office.marvelproject.ui.theme.Padding
 import effective.office.marvelproject.ui.theme.Size
@@ -128,14 +127,6 @@ fun LazyListScope.loadState(loadState: CombinedLoadStates, context: Context) {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun ShowToast(context: Context, error: Int?) {
-    error?.let {
-        Toast.makeText(context, stringResource(id = error), Toast.LENGTH_SHORT)
-            .show()
     }
 }
 
