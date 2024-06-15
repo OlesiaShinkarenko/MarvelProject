@@ -1,16 +1,13 @@
 package effective.office.marvelproject.presentation.chooseHero.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import effective.office.marvelproject.R
 import effective.office.marvelproject.ui.theme.AppTheme
 import effective.office.marvelproject.ui.theme.Padding
@@ -34,15 +31,4 @@ fun ChooseHeroHeader(modifier: Modifier = Modifier) {
             modifier = Modifier.padding(Padding.top_40)
         )
     }
-}
-
-@Preview
-@Composable
-fun ChooseHeroScreenHeaderPreview() {
-    Surface(
-        color = AppTheme.colors.backgroundColor
-    ) {
-        ChooseHeroHeader(modifier = Modifier.fillMaxWidth())
-    }
-
 }

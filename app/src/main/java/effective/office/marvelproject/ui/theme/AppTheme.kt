@@ -19,10 +19,16 @@ object AppTheme {
         @Composable
         get() = LocalCustomTypography.current
 
-    object TextColors {
+    object DarkColors {
         val main = Color(0xFFFFFFFF)
         val description = Color(0xFFEEF2FB)
         val background = Color(0xFF2b272b)
+    }
+
+    object LightColors {
+        val main = Color(0xFF000000)
+        val description = Color(0xFF241D24)
+        val background = Color(0xFFECEBEC)
     }
 
     object TextStyle {

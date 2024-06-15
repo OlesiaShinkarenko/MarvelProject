@@ -4,20 +4,26 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
-import effective.office.marvelproject.ui.theme.AppTheme.TextColors
+import effective.office.marvelproject.ui.theme.AppTheme.DarkColors
 
 val LocalCustomColors = staticCompositionLocalOf {
     CustomColors(
-        mainColor = TextColors.main,
-        descriptionColor = TextColors.description,
-        backgroundColor = TextColors.background
+        mainColor = DarkColors.main,
+        descriptionColor = DarkColors.description,
+        backgroundColor = DarkColors.background
     )
 }
 
 private val darkColors = CustomColors(
-    mainColor = TextColors.main,
-    descriptionColor = TextColors.description,
-    backgroundColor = TextColors.background
+    mainColor = DarkColors.main,
+    descriptionColor = DarkColors.description,
+    backgroundColor = DarkColors.background
+)
+
+private val lightColors = CustomColors(
+    mainColor = AppTheme.LightColors.main,
+    descriptionColor = AppTheme.LightColors.description,
+    backgroundColor = AppTheme.LightColors.background
 )
 
 val LocalCustomTypography = staticCompositionLocalOf {
@@ -32,7 +38,11 @@ fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = darkColors
+    val colors = if (darkTheme) {
+        darkColors
+    } else {
+        lightColors
+    }
     val typography = CustomTypography(
         medium = AppTheme.TextStyle.Medium,
         bold = AppTheme.TextStyle.Bold
