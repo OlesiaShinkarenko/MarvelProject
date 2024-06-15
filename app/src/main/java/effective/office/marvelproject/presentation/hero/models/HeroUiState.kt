@@ -1,4 +1,4 @@
-package effective.office.marvelproject.presentation.hero
+package effective.office.marvelproject.presentation.hero.models
 
 import androidx.compose.runtime.Immutable
 import effective.office.marvelproject.presentation.models.CharacterUI

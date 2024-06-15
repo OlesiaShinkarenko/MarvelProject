@@ -47,7 +47,9 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -119,4 +121,7 @@ dependencies {
 
     implementation(Dependencies.Services.base)
     implementation(Dependencies.Permissions.permissions)
+
+    implementation(Dependencies.Accompanist.systemUiController)
+    implementation(Dependencies.AndroidX.window_size)
 }

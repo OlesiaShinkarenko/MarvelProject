@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Марвел Проект</string>
+    <string name="choose">Выберите своего героя</string>
+    <string name="logo">Логотип Марвел Студии</string>
+    <string name="back">Назад</string>
+    <string name="not_found">Не найдено</string>
+    <string name="error_client">Ошибка клиента</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="connection_error">Ошибка соединения</string>
+</resources>

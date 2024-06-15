@@ -10,6 +10,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import effective.office.marvelproject.data.local.MarvelAppDatabase
+import effective.office.marvelproject.notification.HeroNotification
 import effective.office.marvelproject.utils.Constants
 import javax.inject.Singleton
 
@@ -33,4 +35,13 @@ object NotificationModule {
         }
         return notificationManager
     }
+
+    @Singleton
+    @Provides
+    fun provideHeroNotification(
+        @ApplicationContext context: Context,
+        marvelAppDatabase: MarvelAppDatabase,
+        notificationManager: NotificationManagerCompat
+    ): HeroNotification =
+        HeroNotification(context, marvelAppDatabase, notificationManager)
 }

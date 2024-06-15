@@ -12,60 +12,44 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.net.toUri
-import com.google.firebase.messaging.FirebaseMessagingService
-import com.google.firebase.messaging.RemoteMessage
-import dagger.hilt.android.AndroidEntryPoint
 import effective.office.marvelproject.MainActivity
 import effective.office.marvelproject.R
 import effective.office.marvelproject.data.local.MarvelAppDatabase
 import effective.office.marvelproject.utils.Constants
-import effective.office.marvelproject.utils.Constants.Companion.MY_URI
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@AndroidEntryPoint
-class PushService : FirebaseMessagingService() {
+class HeroNotification(
+    private val applicationContext: Context,
+    private val marvelAppDatabase: MarvelAppDatabase,
+    private val notificationManager: NotificationManagerCompat
+) {
+    fun sendNotification() {
+        val randomId = marvelAppDatabase.characterDao().getRandomId()
 
-    @Inject
-    lateinit var marvelAppDatabase: MarvelAppDatabase
+        val clickIntent = createIntent(
+            applicationContext,
+            "${Constants.MY_URI}/index=${randomId}".toUri()
+        )
 
-    @Inject
-    lateinit var notificationManager: NotificationManagerCompat
-
-    override fun onMessageReceived(message: RemoteMessage) {
-        super.onMessageReceived(message)
         val flag =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 PendingIntent.FLAG_IMMUTABLE
             else
                 0
+        val clickPendingIntent: PendingIntent =
+            createPendingIntent(applicationContext, clickIntent, flag, Constants.REQUEST_CODE)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val randomId = marvelAppDatabase.characterDao().getRandomId()
+        val notificationBuilder = notificationBuilder(
+            applicationContext,
+            randomId.toString(),
+            Constants.CHANNEL_ID,
+            clickPendingIntent
+        )
 
-            val clickIntent = createIntent(
-                applicationContext,
-                "$MY_URI/index=${randomId}".toUri()
+        if (checkPermission(applicationContext)) {
+            notificationManager.notify(
+                Constants.NOTIFICATION_ID,
+                notificationBuilder.build()
             )
-
-            val clickPendingIntent: PendingIntent =
-                createPendingIntent(applicationContext, clickIntent, flag, Constants.REQUEST_CODE)
-
-            val notificationBuilder = notificationBuilder(
-                applicationContext,
-                randomId.toString(),
-                Constants.CHANNEL_ID,
-                clickPendingIntent
-            )
-
-            if (checkPermission(applicationContext)) {
-                notificationManager.notify(
-                    Constants.NOTIFICATION_ID,
-                    notificationBuilder.build()
-                )
-            }
         }
     }
 

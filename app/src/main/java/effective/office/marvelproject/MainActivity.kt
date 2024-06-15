@@ -1,20 +1,23 @@
 package effective.office.marvelproject
 
 import android.Manifest
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
+import androidx.core.view.WindowCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
-import effective.office.marvelproject.notification.checkGooglePlayServices
+import effective.office.marvelproject.notification.services.checkGooglePlayServices
 import effective.office.marvelproject.presentation.navigation.NavGraph
 import effective.office.marvelproject.ui.theme.AppTheme
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -22,15 +25,13 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         if (checkGooglePlayServices(this)) {
             FirebaseMessaging.getInstance().token.addOnCompleteListener(
                 OnCompleteListener { task ->
                     if (!task.isSuccessful) {
                         return@OnCompleteListener
                     }
-
-                    val token = task.result
-                    Timber.tag("TOKEN").d(token)
                 }
             )
         }
@@ -49,5 +50,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(object : ContextWrapper(base) {
+            override fun getApplicationInfo(): ApplicationInfo {
+                val origin = super.getApplicationInfo()
+                origin.flags = origin.flags or ApplicationInfo.FLAG_SUPPORTS_RTL
+                return origin
+            }
+        })
     }
 }

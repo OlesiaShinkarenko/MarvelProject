@@ -1,4 +1,4 @@
-package effective.office.marvelproject.presentation.hero
+package effective.office.marvelproject.presentation.hero.models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,25 +17,31 @@ import javax.inject.Inject
 @HiltViewModel
 class HeroViewModel @Inject constructor(private val repository: MarvelRepository) :
     ViewModel() {
-    private val heroIntent = Channel<HeroIntent>(Channel.UNLIMITED)
+    private val _heroEvent = Channel<HeroEvent>(Channel.UNLIMITED)
     private val _uiState = MutableStateFlow(HeroUiState.Empty)
     val state: StateFlow<HeroUiState> = _uiState.asStateFlow()
 
     init {
-        handleIntent()
+        handleEvent()
     }
 
-    private fun handleIntent() {
+    private fun handleEvent() {
         viewModelScope.launch {
-            heroIntent.consumeAsFlow().collect {
+            _heroEvent.consumeAsFlow().collect {
                 when (it) {
-                    is HeroIntent.FetchHero -> fetchHero(it.id)
+                    is HeroEvent.FetchHero -> fetchHero(it.id)
                 }
             }
         }
     }
 
-    fun fetchHero(id: Int) {
+    fun sendEvent(heroEvent: HeroEvent) {
+        viewModelScope.launch {
+            _heroEvent.send(heroEvent)
+        }
+    }
+
+    private fun fetchHero(id: Int) {
         viewModelScope.launch {
             repository.getCharacter(id).collect {
                 when (it) {
