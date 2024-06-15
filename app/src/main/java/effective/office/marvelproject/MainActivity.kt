@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import effective.office.marvelproject.notification.checkGooglePlayServices
-import effective.office.marvelproject.presentation.components.ApplySystemBarColors
 import effective.office.marvelproject.presentation.navigation.NavGraph
 import effective.office.marvelproject.ui.theme.AppTheme
 
@@ -38,7 +37,6 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             AppTheme {
-                ApplySystemBarColors()
                 Surface(
                     color = AppTheme.colors.backgroundColor
                 ) {

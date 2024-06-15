@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
+import effective.office.marvelproject.presentation.components.ApplySystemBarColors
 import effective.office.marvelproject.ui.theme.AppTheme.DarkColors
 
 val LocalCustomColors = staticCompositionLocalOf {
@@ -47,6 +48,8 @@ fun AppTheme(
         medium = AppTheme.TextStyle.Medium,
         bold = AppTheme.TextStyle.Bold
     )
+
+    ApplySystemBarColors(darkTheme)
 
     CompositionLocalProvider(
         LocalCustomColors provides colors,
