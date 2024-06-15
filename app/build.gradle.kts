@@ -119,4 +119,6 @@ dependencies {
 
     implementation(Dependencies.Services.base)
     implementation(Dependencies.Permissions.permissions)
+
+    implementation(Dependencies.Accompanist.systemUiController)
 }

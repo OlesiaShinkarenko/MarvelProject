@@ -21,6 +21,7 @@ object Dependencies {
         const val firebase = "33.1.0"
         const val services = "18.5.0"
         const val permission = "0.33.1-alpha"
+        const val accompanist = "0.32.0"
     }
 
     object AndroidX {
@@ -93,5 +94,10 @@ object Dependencies {
     object Permissions {
         const val permissions =
             "com.google.accompanist:accompanist-permissions:${Version.permission}"
+    }
+
+    object Accompanist {
+        const val systemUiController =
+            "com.google.accompanist:accompanist-systemuicontroller:${Version.accompanist}"
     }
 }
