@@ -8,14 +8,11 @@ object Padding {
         vertical = 24.dp
     )
     val top_40 = PaddingValues(
-        top = 40.dp
-    )
-    val bottom_32 = PaddingValues(
+        top = 40.dp,
         bottom = 32.dp
     )
     val horizontal_30 = PaddingValues(
-        start = 30.dp,
-        end = 30.dp
+       horizontal = 30.dp
     )
     val start_28_bottom_60 = PaddingValues(
         start = 28.dp,
