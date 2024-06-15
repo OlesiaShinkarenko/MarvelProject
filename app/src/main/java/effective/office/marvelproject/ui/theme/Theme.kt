@@ -45,8 +45,6 @@ fun AppTheme(
     }
     val typography = CustomTypography(
         medium = AppTheme.TextStyle.Medium,
-
-        
         bold = AppTheme.TextStyle.Bold
     )
 
