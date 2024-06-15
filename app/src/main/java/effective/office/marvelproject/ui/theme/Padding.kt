@@ -19,9 +19,7 @@ object Padding {
     )
     val start_28_bottom_60 = PaddingValues(
         start = 28.dp,
-        bottom = 60.dp
-    )
-    val end_28 = PaddingValues(
+        bottom = 60.dp,
         end = 28.dp
     )
     val all_16 = PaddingValues(

@@ -56,8 +56,7 @@ fun HeroElement(
             Text(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(Padding.start_28_bottom_60)
-                    .padding(Padding.end_28),
+                    .padding(Padding.start_28_bottom_60),
                 text = item.name,
                 style = AppTheme.typography.bold,
                 color = AppTheme.colors.mainColor
