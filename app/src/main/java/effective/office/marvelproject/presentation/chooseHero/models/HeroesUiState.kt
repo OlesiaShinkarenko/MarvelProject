@@ -1,4 +1,4 @@
-package effective.office.marvelproject.presentation.chooseHero
+package effective.office.marvelproject.presentation.chooseHero.models
 
 import androidx.compose.runtime.Immutable
 import androidx.paging.PagingData

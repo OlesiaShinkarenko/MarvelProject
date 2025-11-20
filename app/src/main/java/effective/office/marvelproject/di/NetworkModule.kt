@@ -10,12 +10,12 @@ import effective.office.marvelproject.BuildConfig
 import effective.office.marvelproject.data.network.EitherCallAdapterFactory
 import effective.office.marvelproject.data.remote.services.MarvelApiService
 import effective.office.marvelproject.utils.Constants
+import effective.office.marvelproject.utils.hash
+import effective.office.marvelproject.utils.ts
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -28,9 +28,9 @@ class NetworkModule {
     private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url
             .newBuilder()
-            .addQueryParameter("apikey", Constants.API_KEY)
-            .addQueryParameter("ts", Constants.ts)
-            .addQueryParameter("hash", Constants.hash())
+            .addQueryParameter("apikey", BuildConfig.API_KEY)
+            .addQueryParameter("ts", ts)
+            .addQueryParameter("hash", hash())
             .build()
 
         val newRequest = chain.request()
@@ -47,24 +47,12 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
-        val logInterceptor =
-            HttpLoggingInterceptor { message -> Timber.tag("Okhttp").d(message) }.apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            }
-        OkHttpClient().newBuilder()
-            .addInterceptor(authInterceptor)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .addNetworkInterceptor(logInterceptor)
-            .build()
-    } else {
+    fun provideOkHttpClient() =
         OkHttpClient().newBuilder()
             .addInterceptor(authInterceptor)
             .readTimeout(60, TimeUnit.SECONDS)
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()
-    }
 
     @Provides
     @Singleton

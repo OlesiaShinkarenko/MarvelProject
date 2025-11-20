@@ -1,4 +1,4 @@
-package effective.office.marvelproject.notification
+package effective.office.marvelproject.notification.services
 
 import android.content.Context
 import com.google.android.gms.common.ConnectionResult

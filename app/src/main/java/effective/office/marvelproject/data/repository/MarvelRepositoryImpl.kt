@@ -13,6 +13,7 @@ import effective.office.marvelproject.data.remote.model.mappers.toEntity
 import effective.office.marvelproject.data.remote.services.MarvelApiService
 import effective.office.marvelproject.presentation.models.CharacterUI
 import effective.office.marvelproject.presentation.models.mappers.toUI
+import effective.office.marvelproject.utils.Constants.Companion.PAGE_SIZE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -25,11 +26,8 @@ import javax.inject.Singleton
 class MarvelRepositoryImpl @Inject constructor(
     private val database: MarvelAppDatabase,
     private val marvelApiService: MarvelApiService
-
 ) : MarvelRepository {
     private val characterDao = database.characterDao()
-
-    private val PAGE_SIZE = 20
 
     @ExperimentalPagingApi
     override fun getCharacterPage() =
@@ -45,7 +43,6 @@ class MarvelRepositoryImpl @Inject constructor(
                 it.toUI()
             }
         }.flowOn(Dispatchers.IO)
-
 
     override suspend fun getCharacter(id: Int): Flow<Either<ErrorResponse, CharacterUI>> = flow {
         val character = characterDao.getCharacter(id)
